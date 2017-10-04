@@ -2,7 +2,7 @@
 
 mod bar_chart;
 mod axes;
-
+mod bar;
 
 
 
