@@ -12,7 +12,7 @@ pub fn start_file(filename: String) -> Result<File, &'static str> {
         Err(_) => return Err("File could not be opened"),
     };
 
-    let payload = "<!DOCTYPE html> \n <meta charset=\"utf-8\"> \n <div class=\"chart\"></div>";
+    let payload = "<!DOCTYPE html> \n<meta charset=\"utf-8\"> \n<div class=\"chart\"></div>";
     let f_write = file.write_all(payload.as_bytes());
     match f_write {
         Ok(_) => Ok(file),
