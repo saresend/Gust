@@ -8,18 +8,16 @@ extern crate serde_derive;
 pub mod bar_chart;
 pub mod axes;
 pub mod bar;
-mod elements;
-
+pub mod elements;
+pub mod utils;
 
 #[cfg(test)]
 mod tests {
-    use std::fs::remove_file;
-    use axes::{YAxis, XAxis};
+    use utils::get_rgb_representation;
+    
     #[test]
-    fn test_XAxis_Serialization() {
-        let x1 = XAxis::new("Hi there".to_string(), "Feet".to_string(), false, 200);
-
-        println!("{}", x1.to_json());
+    fn test_rgb_conversion() {
+        assert_eq!(get_rgb_representation("#FF0000".to_string()), Ok((255, 0, 0)));
     }
     
 }
