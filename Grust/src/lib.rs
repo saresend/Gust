@@ -5,9 +5,9 @@ extern crate serde_json;
 #[macro_use]
 extern crate serde_derive;
 
-mod bar_chart;
-mod axes;
-mod bar;
+pub mod bar_chart;
+pub mod axes;
+pub mod bar;
 
 
 #[cfg(test)]

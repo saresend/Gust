@@ -44,4 +44,14 @@ impl YAxis {
             Err(_) => "".to_string(),
         }
     }
+    
+    pub fn new(title: String, unit: String, has_line: bool, max_value: i64) -> YAxis {
+        YAxis{
+            title,
+            unit,
+            has_line,
+            max_value,
+        }
+
+    }
 }
