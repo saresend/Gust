@@ -8,6 +8,7 @@ extern crate serde_derive;
 pub mod bar_chart;
 pub mod axes;
 pub mod bar;
+mod elements;
 
 
 #[cfg(test)]
