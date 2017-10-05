@@ -1,10 +1,10 @@
 extern crate serde_json;
-use elements::Tick;
+use elements::{Tick, Unit};
 
 #[derive(Serialize, Deserialize)]
 pub struct XAxis {
     title: String,
-    unit: String,
+    unit: Unit,
     has_line: bool,
     max_value: i64,
     ticks: Vec<Tick>,
@@ -12,7 +12,7 @@ pub struct XAxis {
 #[derive(Serialize, Deserialize)]
 pub struct YAxis {
     title: String,
-    unit: String,
+    unit: Unit,
     has_line: bool,
     max_value: i64,
     ticks: Vec<Tick>,
@@ -30,7 +30,7 @@ impl XAxis {
     }
 
 
-    pub fn new(title: String, unit: String, has_line: bool, max_value: i64) -> XAxis {
+    pub fn new(title: String, unit: Unit, has_line: bool, max_value: i64) -> XAxis {
         let ticks  = vec![];
         XAxis {
             title,
@@ -56,7 +56,7 @@ impl YAxis {
         }
     }
     
-    pub fn new(title: String, unit: String, has_line: bool, max_value: i64) -> YAxis {
+    pub fn new(title: String, unit: Unit, has_line: bool, max_value: i64) -> YAxis {
         YAxis{
             title,
             unit,
@@ -65,6 +65,10 @@ impl YAxis {
             ticks: vec![],
         }
 
+    }
+    
+    pub fn add_tick(& mut self, tick: Tick) {
+        self.ticks.push(tick);
     }
 
     
