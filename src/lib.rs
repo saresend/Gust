@@ -5,6 +5,8 @@ extern crate serde_json;
 #[macro_use]
 extern crate serde_derive;
 
+
+pub mod unit;
 pub mod bar_chart;
 pub mod axes;
 pub mod bar;
@@ -17,7 +19,9 @@ mod tests {
     
     #[test]
     fn test_rgb_conversion() {
-        assert_eq!(get_rgb_representation("#FF0000".to_string()), Ok((255, 0, 0)));
+        assert_eq!(get_rgb_representation("#FF0000"), Ok((255, 0, 0)));
+        assert_eq!(get_rgb_representation("#000"), Err("Malformatted"));
     }
+    
     
 }

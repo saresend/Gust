@@ -1,5 +1,7 @@
 extern crate serde_json;
-use elements::{Tick, Unit};
+use elements::{Tick};
+use unit::Unit;
+
 
 #[derive(Serialize, Deserialize)]
 pub struct XAxis {
