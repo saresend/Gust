@@ -20,6 +20,7 @@ mod tests {
     #[test]
     fn test_rgb_conversion() {
         assert_eq!(get_rgb_representation("#FF0000"), Ok((255, 0, 0)));
+
         assert_eq!(get_rgb_representation("#000"), Err("Malformatted"));
     }
     

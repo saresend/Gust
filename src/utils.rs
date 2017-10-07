@@ -1,6 +1,6 @@
 
 pub fn get_rgb_representation(hex: &str) -> Result<(u8, u8, u8), &'static str> {
-    if hex.len() < 8 {
+    if hex.len() < 7 {
         return Err("Malformatted");
     }
     if let (Ok(r1), Ok(r2), Ok(r3)) =
