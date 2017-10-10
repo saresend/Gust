@@ -13,6 +13,13 @@ pub struct BarChart {
 
 
 impl BarChart {
+
+
+    pub fn get_dimensions(&self) -> (i64, i64) {
+        (self.x_axis.get_dimension(), self.y_axis.get_dimension())
+    }
+
+    
     
 
 

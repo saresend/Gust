@@ -31,6 +31,10 @@ impl XAxis {
 
     }
 
+    pub fn get_dimension(&self) -> i64 {
+        self.max_value
+    }
+
 
     pub fn new(title: String, unit: Unit, has_line: bool, max_value: i64) -> XAxis {
         let ticks  = vec![];
@@ -67,6 +71,9 @@ impl YAxis {
             ticks: vec![],
         }
 
+    }
+     pub fn get_dimension(&self) -> i64 {
+        self.max_value
     }
     
     pub fn add_tick(& mut self, tick: Tick) {
