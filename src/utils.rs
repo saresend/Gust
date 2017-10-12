@@ -17,7 +17,7 @@ pub fn get_rgb_representation(hex: &str) -> Result<(u8, u8, u8), &'static str> {
 }
 
 
-pub fn create_file(String filename) {
-    
+pub fn create_file(filename: &str) {
+
 
 }
