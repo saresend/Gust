@@ -15,3 +15,9 @@ pub fn get_rgb_representation(hex: &str) -> Result<(u8, u8, u8), &'static str> {
         Err("Malformatted")
     }
 }
+
+
+pub fn create_file(String filename) {
+    
+
+}

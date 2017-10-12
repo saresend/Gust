@@ -8,3 +8,6 @@ pub struct Bar {
     is_3d: bool,
     style: String, //Represents the style object passed into the rendering of d3.js
 }
+
+
+
