@@ -1,3 +1,4 @@
+use std::fs::File;
 
 pub fn get_rgb_representation(hex: &str) -> Result<(u8, u8, u8), &'static str> {
     if hex.len() < 7 {
@@ -17,7 +18,9 @@ pub fn get_rgb_representation(hex: &str) -> Result<(u8, u8, u8), &'static str> {
 }
 
 
-pub fn create_file(String filename) {
-    
-
+pub fn create_file(filename: String) -> Result<File, &'static str>{
+    match File::create(&filename) {
+        Err(why) => why,
+        Ok(file) => Ok(file),
+    };
 }
