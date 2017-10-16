@@ -18,9 +18,4 @@ pub fn get_rgb_representation(hex: &str) -> Result<(u8, u8, u8), &'static str> {
 }
 
 
-pub fn create_file(filename: String) -> Option<File> {
-    match File::create(&filename) {
-        Err(why) => why,
-        Ok(file) => Ok(file),
-    };
-}
+
