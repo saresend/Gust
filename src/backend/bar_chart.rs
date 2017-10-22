@@ -20,18 +20,18 @@ impl BarChart {
         (self.x_axis.get_dimension(), self.y_axis.get_dimension())
     }
 
-    pub fn set_color(&self, col: &str) {
+    pub fn set_color(&mut self, col: &str) {
         match utils::get_rgb_representation(col) {
             Ok(val) => self.color = val,
             Err(_) => (),
         }
     }
 
-    pub fn should_show_grid(&self, i: bool) {
+    pub fn should_show_grid(&mut self, i: bool) {
         self.show_grid = i;
     }
 
-    pub fn add_bar(&self, b: Bar) {
+    pub fn add_bar(&mut self, b: Bar) {
         self.bars.push(b);
     }
 
