@@ -1,5 +1,5 @@
 
-use utils::get_rgb_representation;
+use backend::utils::get_rgb_representation;
 
 
 #[derive(Serialize, Deserialize)]

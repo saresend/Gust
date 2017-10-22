@@ -1,8 +1,8 @@
 extern crate serde_json;
-use axes::{XAxis, YAxis};
-use bar::Bar;
-use utils;
-use unit::Unit;
+use backend::axes::{XAxis, YAxis};
+use backend::bar::Bar;
+use backend::utils;
+use backend::unit::Unit;
 
 #[derive(Serialize)]
 pub struct BarChart {

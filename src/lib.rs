@@ -6,19 +6,14 @@ extern crate serde_json;
 extern crate serde_derive;
 
 
-pub mod unit;
-pub mod bar_chart;
-pub mod axes;
-pub mod bar;
-pub mod elements;
-pub mod utils;
-pub mod style;
+pub mod backend;
+
 
 
 #[cfg(test)]
 mod tests {
-    use utils::get_rgb_representation;
-    use bar_chart::BarChart;
+    use backend::utils::get_rgb_representation;
+    use backend::bar_chart::BarChart;
     
     #[test]
     fn test_rgb_conversion() {
