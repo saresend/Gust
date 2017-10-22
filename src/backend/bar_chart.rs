@@ -20,22 +20,34 @@ impl BarChart {
         (self.x_axis.get_dimension(), self.y_axis.get_dimension())
     }
 
-    pub fn new(color: &str, title: String, has_line: bool, max_y_value: i64, max_x_value: i64) -> BarChart {
-
-        let unit = Unit::None;
-        let unit2 = Unit::None;
-        let vec : Vec<Bar> = vec![];
-        
-        BarChart{
-            color: utils::get_rgb_representation(color).unwrap(),
-            x_axis: XAxis::new(title.clone(), unit, has_line, max_x_value),
-            y_axis: YAxis::new(title, unit2, has_line, max_y_value),
-            show_grid: true,
-            bars: vec,
+    pub fn set_color(&self, col: &str) {
+        match utils::get_rgb_representation(col) {
+            Ok(val) => self.color = val,
+            Err(_) => (),
         }
     }
 
+    pub fn should_show_grid(&self, i: bool) {
+        self.show_grid = i;
+    }
 
+    pub fn add_bar(&self, b: Bar) {
+        self.bars.push(b);
+    }
+
+    pub fn new() -> BarChart {
+
+        let x = XAxis::new("X axis".to_string(), Unit::None, true, 100);
+        let y = YAxis::new("Y axis".to_string(), Unit::None, true, 100);
+
+        BarChart {
+            color: (0, 0, 0),
+            x_axis: x,
+            y_axis: y,
+            show_grid: true,
+            bars: vec![],
+        }
+    }
 
     pub fn to_json(&self) -> String {
         match serde_json::to_string(&self) {
