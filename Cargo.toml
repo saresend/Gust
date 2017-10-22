@@ -1,5 +1,5 @@
 [package]
-name = "Grust"
+name = "grust"
 version = "0.1.0"
 authors = ["Samuel Resendez <saresend@usc.edu>"]
 

@@ -1,8 +1,6 @@
 extern crate serde_json;
-
 use axes::{XAxis, YAxis};
 use bar::Bar;
-use serde_json::to_string;
 use utils;
 use unit::Unit;
 
@@ -30,8 +28,8 @@ impl BarChart {
         
         BarChart{
             color: utils::get_rgb_representation(color).unwrap(),
-            x_axis: XAxis::new(title.clone(), unit, true, max_x_value),
-            y_axis: YAxis::new(title, unit2, true, max_y_value),
+            x_axis: XAxis::new(title.clone(), unit, has_line, max_x_value),
+            y_axis: YAxis::new(title, unit2, has_line, max_y_value),
             show_grid: true,
             bars: vec,
         }
@@ -42,7 +40,7 @@ impl BarChart {
     pub fn to_json(&self) -> String {
         match serde_json::to_string(&self) {
             Ok(p) => p,
-            Err(p) => "".to_string(),
+            Err(_) => "".to_string(),
         }
     }
 }

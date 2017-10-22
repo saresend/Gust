@@ -1,5 +1,3 @@
-use std::fs::File;
-
 pub fn get_rgb_representation(hex: &str) -> Result<(u8, u8, u8), &'static str> {
     if hex.len() < 7 {
         return Err("Malformatted");
@@ -16,6 +14,3 @@ pub fn get_rgb_representation(hex: &str) -> Result<(u8, u8, u8), &'static str> {
         Err("Malformatted")
     }
 }
-
-
-
