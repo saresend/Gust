@@ -12,7 +12,8 @@ pub mod frontend;
 
 #[cfg(test)]
 mod tests {
-    use backend::utils::get_rgb_representation;
-    use backend::bar_chart::BarChart;
+    
+
+    
     
 }
