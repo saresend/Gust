@@ -25,5 +25,13 @@ pub enum GraphType {
     Scatter,
 }
 
-
-
+/* 
+ * Graph represents an actual visualized graph, that is to be 
+ * serialized and rendered by the selected grust frontend
+ */
+pub struct Graph {
+    pub title: String,
+    pub graph_id: u32,
+    pub graph_type: GraphType,
+    
+}
