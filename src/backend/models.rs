@@ -8,10 +8,18 @@
  * This could be a point in line chart, or a bar in a bar chart
  */
 #[derive(Serialize)]
+pub struct Data {
+    pub name: String,
+    pub values: Vec<DataPoint>,
+}
+
+/* 
+ * DataPoint represent one entry in a data object 
+ */
+#[derive(Serialize)]
 pub struct DataPoint {
-    pub series_id: u32,
-    pub x: Option<i32>,
-    pub y: i32,
+    pub category: String,
+    pub amount: i32,
 }
 
 /*
@@ -32,18 +40,19 @@ pub enum GraphType {
  */
 #[derive(Serialize)]
 pub struct Graph {
-    pub title: String,
-    pub graph_type: GraphType,
-    pub data: Vec<DataPoint>,
+   pub width: i32,
+   pub height: i32,
+   pub padding: i32,
+   pub autosize: String,
 }
 
+/*
+ * 
+ */
 
-impl Graph {
-    pub fn new(title: String, graph_type: GraphType) -> Graph {
-        Graph {
-            title: title,
-            graph_type: graph_type,
-            data: vec![],
-        }
-    }
+#[derive(Serialize)]
+pub struct Scale {
+    pub name: String,
+    pub scale_type: String, 
+    
 }

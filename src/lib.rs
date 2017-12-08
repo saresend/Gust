@@ -13,7 +13,16 @@ pub mod frontend;
 #[cfg(test)]
 mod tests {
     
+    use super::backend::models::*;
+    use super::backend::io::save_graph;
 
-    
+
+    #[test]
+    fn test_graph_saving() {
+
+        let g = Graph::new("Title".to_string(), GraphType::Bar);
+        let _ = save_graph(&g);
+    }
+
     
 }
