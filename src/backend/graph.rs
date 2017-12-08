@@ -17,6 +17,10 @@ pub struct Graph {
     pub autosize: AutoSize,
 
     pub signals: Vec<Signal>,
+    /*pub scales: Vec<Scale>,
+    pub axes: Vec<Axis>,
+    pub marks: Vec<Mark>,
+    */
 }
 
 /* 
@@ -58,7 +62,7 @@ impl Serialize for Graph {
     where
         S: Serializer,
     {
-        let mut s = serializer.serialize_struct("Graph", 2)?;
+        let mut s = serializer.serialize_struct("Graph", 7)?;
         let _ = s.serialize_field("$schema", &self.schema);
         let _ = s.serialize_field("description", &self.description);
         let _ = s.serialize_field("width", &self.width);
