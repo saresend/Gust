@@ -7,23 +7,13 @@
 
 use std::fs;
 use std::fs::File;
-use std::io::{Write, Result};
-use serde_json;
 
-use backend::models::Graph;
 
 /*
  * save_graph is a function that is trying to save a graph to the grust_build directory, so that its
  * contents can then be constructed into a visualization by the frontend
  */
-pub fn save_graph(graph: &Graph) -> Result<usize> {
-    let serialized = serde_json::to_string(graph).unwrap();
-    let _ = fs::create_dir("grust_build/");
-    let file_path = format!("grust_build/{}.json", graph.title);
-    let mut file = create_file(&file_path);
-    file.write(serialized.as_bytes())
 
-}
 
 
 
