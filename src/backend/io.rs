@@ -19,7 +19,7 @@ use backend::models::Graph;
 pub fn save_graph(graph: &Graph) -> Result<usize> {
     let serialized = serde_json::to_string(graph).unwrap();
     let _ = fs::create_dir("grust_build/");
-    let file_path = format!("grust_build/{}", graph.title);
+    let file_path = format!("grust_build/{}.json", graph.title);
     let mut file = create_file(&file_path);
     file.write(serialized.as_bytes())
 
@@ -34,7 +34,7 @@ pub fn save_graph(graph: &Graph) -> Result<usize> {
  */
 fn create_file(name: &str) -> File {
     let _ = fs::remove_file(name);
-    fs::File::open(name).unwrap()
+    fs::File::create(name).unwrap()
 }
 
 

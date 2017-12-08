@@ -26,15 +26,24 @@ pub enum GraphType {
     Scatter,
 }
 
-/* 
- * Graph represents an actual visualized graph, that is to be 
+/*
+ * Graph represents an actual visualized graph, that is to be
  * serialized and rendered by the selected grust frontend
  */
 #[derive(Serialize)]
 pub struct Graph {
     pub title: String,
-    pub graph_id: u32,
     pub graph_type: GraphType,
     pub data: Vec<DataPoint>,
-    
+}
+
+
+impl Graph {
+    pub fn new(title: String, graph_type: GraphType) -> Graph {
+        Graph {
+            title: title,
+            graph_type: graph_type,
+            data: vec![],
+        }
+    }
 }
