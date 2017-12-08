@@ -6,6 +6,8 @@ use serde::ser::Serialize;
 use serde::Serializer;
 use serde::ser::SerializeStruct;
 
+use backend::signal::Signal;
+
 pub struct Graph {
     schema:&'static str,
     pub description: String,
@@ -40,6 +42,7 @@ impl Graph {
             height: 200,
             padding: 5,
             autosize: AutoSize::None,
+            signals: vec![],
         }
     }
 }
@@ -62,6 +65,7 @@ impl Serialize for Graph {
         let _ = s.serialize_field("height", &self.height);
         let _ = s.serialize_field("padding", &self.padding);
         let _ = s.serialize_field("autosize", &self.autosize);
+        let _ = s.serialize_field("signals", &self.signals);
         s.end()
     }
 }
