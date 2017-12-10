@@ -1,0 +1,9 @@
+{
+    "$schema": "https://vega.github.io/schema/vega/v3.0.json",
+    "description": "Test Description",
+    "width": 500,
+    "height": 200,
+    "padding": 5,
+    "autosize": "none",
+    "signals": []
+}
