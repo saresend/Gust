@@ -25,9 +25,24 @@ pub struct Domain {
     pub field: String,
 }
 
+impl Scale {
 
-
-
+    pub fn new(name: &str, range: &str, field: &str) -> Scale {
+        let d = Domain {
+            data: "Graph".to_string(),
+            field: field.to_string(),
+        };
+        Scale {
+            name: name.to_string(),
+            scale_type: "band".to_string(),
+            domain: d,
+            range: range.to_string(),
+            padding: 0.05,
+            round: true,
+        }
+    }
+    
+}
 
 impl Serialize for Scale {
      fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
