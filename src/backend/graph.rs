@@ -8,8 +8,9 @@ use serde::ser::SerializeStruct;
 
 use backend::signal::Signal;
 use backend::scale::Scale;
-
+use backend::axis::Axis;
 use backend::constants::*;
+
 
 pub struct Graph {
     schema:&'static str,
@@ -21,8 +22,8 @@ pub struct Graph {
 
     pub signals: Vec<Signal>,
     pub scales: Vec<Scale>,
-    /*
     pub axes: Vec<Axis>,
+    /*
     pub marks: Vec<Mark>,
     */
 }
