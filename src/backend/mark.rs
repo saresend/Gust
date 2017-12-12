@@ -3,53 +3,62 @@
  * Author: Samuel Resendez
  * 
  */
-pub struct Mark {
 
-    mark_type: String, 
-    from: Source, 
-    encode: Encoding,
+use serde::ser::Serialize;
+use serde::Serializer;
+use serde::ser::SerializeStruct;
+
+pub struct Mark {
+    pub mark_type: String, 
+    pub from: Source, 
+    pub encode: Encoding,
 }
 
 
 pub struct Encoding {
-    enter: Visualization,
-    update: Fill,
-    hover: Fill,
+    pub enter: Visualization,
+    pub update: Fill,
+    pub hover: Fill,
 }
 
 #[derive(Serialize)]
 pub struct Fill {
-    fill: Val,
+    pub fill: Val,
 }
 #[derive(Serialize)]
 pub struct Val {
-    value: String,
+    pub value: String,
 }
 
 #[derive(Serialize)]
 pub struct Visualization {
-    x: Scaler,
-    width: Scaler,
-    y: Scaler,
-    y2: Scaler,
+    pub x: Scaler,
+    pub width: Scaler,
+    pub y: Scaler,
+    pub y2: Scaler,
 }
 
 #[derive(Serialize)]
 pub struct Scaler {
-    scale: String,
-    field: String,
+    pub scale: String,
+    pub field: String,
 }
 
 
 #[derive(Serialize)]
 pub struct Source {
-    data: String,
+    pub data: String,
 }
 
 impl Mark {
 
 
-    pub fn new()
+    pub fn new() -> Mark {
+        Mark {
+            mark_type: "rect".to_string(),
+            from: Source { data: }
+        }
+    }
 }
 
 

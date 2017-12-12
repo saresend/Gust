@@ -8,6 +8,7 @@ use serde::ser::SerializeStruct;
 
 use backend::signal::Signal;
 use backend::scale::Scale;
+use backend::data::Data;
 use backend::axis::*;
 use backend::constants::*;
 
@@ -19,7 +20,7 @@ pub struct Graph {
     pub height: u16,
     pub padding: u16,
     pub autosize: AutoSize,
-
+    pub data: Vec<Data>,
     pub signals: Vec<Signal>,
     pub scales: Vec<Scale>,
     pub axes: Vec<Axis>,
@@ -52,6 +53,7 @@ impl Graph {
             padding: 5,
             autosize: AutoSize::None,
             signals: vec![],
+            data: vec![],
             scales: vec![Scale::new(XSCALE, WIDTH, XAXIS), Scale::new(YSCALE, HEIGHT, YAXIS)],
             axes: vec![Axis::new(Orientation::Bottom, XSCALE), Axis::new(Orientation::Left, YSCALE) ]
         }
@@ -76,6 +78,7 @@ impl Serialize for Graph {
         let _ = s.serialize_field("height", &self.height);
         let _ = s.serialize_field("padding", &self.padding);
         let _ = s.serialize_field("autosize", &self.autosize);
+        let _ = s.serialize_field("data", &self.data);
         let _ = s.serialize_field("signals", &self.signals);
         let _ = s.serialize_field("scales", &self.scales);
         let _ = s.serialize_field("axes", &self.axes);
