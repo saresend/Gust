@@ -46,6 +46,11 @@ pub struct Source {
     data: String,
 }
 
+impl Mark {
+
+
+    pub fn new()
+}
 
 
 impl Serialize for Mark {
