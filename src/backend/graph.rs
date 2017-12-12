@@ -9,6 +9,8 @@ use serde::ser::SerializeStruct;
 use backend::signal::Signal;
 use backend::scale::Scale;
 
+use backend::constants::*;
+
 pub struct Graph {
     schema:&'static str,
     pub description: String,
@@ -49,6 +51,7 @@ impl Graph {
             padding: 5,
             autosize: AutoSize::None,
             signals: vec![],
+            scales: vec![Scale::new(XSCALE, WIDTH, XAXIS), Scale::new(YSCALE, HEIGHT, YAXIS)]
         }
     }
 }
@@ -64,7 +67,7 @@ impl Serialize for Graph {
     where
         S: Serializer,
     {
-        let mut s = serializer.serialize_struct("Graph", 7)?;
+        let mut s = serializer.serialize_struct("Graph", 8)?;
         let _ = s.serialize_field("$schema", &self.schema);
         let _ = s.serialize_field("description", &self.description);
         let _ = s.serialize_field("width", &self.width);
@@ -72,6 +75,7 @@ impl Serialize for Graph {
         let _ = s.serialize_field("padding", &self.padding);
         let _ = s.serialize_field("autosize", &self.autosize);
         let _ = s.serialize_field("signals", &self.signals);
+        let _ = s.serialize_field("scales", &self.scales);
         s.end()
     }
 }

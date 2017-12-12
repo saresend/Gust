@@ -1,9 +1,1 @@
-{
-    "$schema": "https://vega.github.io/schema/vega/v3.0.json",
-    "description": "Test Description",
-    "width": 500,
-    "height": 200,
-    "padding": 5,
-    "autosize": "none",
-    "signals": []
-}
+{"$schema":"https://vega.github.io/schema/vega/v3.0.json","description":"Test Description","width":500,"height":200,"padding":5,"autosize":"none","signals":[],"scales":[{"name":"xscale","type":"band","domain":{"data":"Graph","field":"x-axis"},"range":"width","padding":0.05,"round":true},{"name":"yscale","type":"band","domain":{"data":"Graph","field":"y-axis"},"range":"height","padding":0.05,"round":true}]}
