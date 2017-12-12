@@ -11,11 +11,12 @@ pub struct Axis {
 }
 
 #[derive(Serialize)]
+#[serde(rename_all="lowercase")]
 pub enum Orientation {
-    left,
-    right, 
-    top,
-    bottom,
+    Left,
+    Right, 
+    Top,
+    Bottom,
 }
 
 
