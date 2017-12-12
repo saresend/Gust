@@ -7,11 +7,11 @@ use serde::Serializer;
 use serde::ser::SerializeStruct;
 
 use backend::signal::Signal;
-use backend::scale::Scale;
+use backend::scale::*;
 use backend::data::Data;
 use backend::axis::*;
 use backend::constants::*;
-
+use backend::mark::Mark;
 
 pub struct Graph {
     schema:&'static str,
@@ -24,9 +24,7 @@ pub struct Graph {
     pub signals: Vec<Signal>,
     pub scales: Vec<Scale>,
     pub axes: Vec<Axis>,
-    /*
     pub marks: Vec<Mark>,
-    */
 }
 
 /* 
@@ -51,11 +49,12 @@ impl Graph {
             width: 500,
             height: 200,
             padding: 5,
-            autosize: AutoSize::None,
+            autosize: AutoSize::Pad,
             signals: vec![],
             data: vec![],
-            scales: vec![Scale::new(XSCALE, WIDTH, XAXIS), Scale::new(YSCALE, HEIGHT, YAXIS)],
-            axes: vec![Axis::new(Orientation::Bottom, XSCALE), Axis::new(Orientation::Left, YSCALE) ]
+            scales: vec![Scale::new(XSCALE, WIDTH, XAXIS, ScaleType::Band), Scale::new(YSCALE, HEIGHT, YAXIS, ScaleType::None)],
+            axes: vec![Axis::new(Orientation::Bottom, XSCALE), Axis::new(Orientation::Left, YSCALE) ],
+            marks: vec![Mark::new()],
         }
     }
 }
@@ -71,7 +70,7 @@ impl Serialize for Graph {
     where
         S: Serializer,
     {
-        let mut s = serializer.serialize_struct("Graph", 9)?;
+        let mut s = serializer.serialize_struct("Graph", 11)?;
         let _ = s.serialize_field("$schema", &self.schema);
         let _ = s.serialize_field("description", &self.description);
         let _ = s.serialize_field("width", &self.width);
@@ -81,6 +80,7 @@ impl Serialize for Graph {
         let _ = s.serialize_field("data", &self.data);
         let _ = s.serialize_field("signals", &self.signals);
         let _ = s.serialize_field("scales", &self.scales);
+        let _ = s.serialize_field("marks", &self.marks);
         let _ = s.serialize_field("axes", &self.axes);
         s.end()
     }

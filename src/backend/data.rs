@@ -24,6 +24,13 @@ impl Data {
             values: vec![],
         }
     }
+
+    pub fn create_fake_data(& mut self, _ : i32) {
+        let v = vec!["A", "B", "C", "D", "E", "F", "G","H", "I", "J", "K"];
+        for i in 0..10 {
+            self.values.push(DataEntry::new(v[i].to_string(), (i * i) as i32 ));
+        }
+    }
 }
 /* 
  * DataEntry represent a single point or bar on a graph
