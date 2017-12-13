@@ -10,27 +10,18 @@ use serde::ser::SerializeStruct;
 
 use backend::constants::*;
 
+use backend::mark::encoding::Encoding;
+use backend::mark::fill::{Fill, Val};
+use backend::mark::scaler::Scaler;
+
 pub struct Mark {
     pub mark_type: String, 
     pub from: Source, 
     pub encode: Encoding,
 }
 
-#[derive(Serialize)]
-pub struct Encoding {
-    pub enter: Visualization,
-    pub update: Fill,
-    pub hover: Fill,
-}
 
-#[derive(Serialize)]
-pub struct Fill {
-    pub fill: Val,
-}
-#[derive(Serialize)]
-pub struct Val {
-    pub value: String,
-}
+
 
 #[derive(Serialize)]
 pub struct Visualization {
@@ -40,11 +31,7 @@ pub struct Visualization {
     pub y2: Scaler,
 }
 
-pub struct Scaler {
-    pub scale: String,
-    pub y_name: &'static str,
-    pub field: String,
-}
+
 
 
 #[derive(Serialize)]
@@ -52,31 +39,9 @@ pub struct Source {
     pub data: String,
 }
 
-impl  Scaler {
-    pub fn new(scale: &str,name: &'static str, field: &str) -> Scaler {
-        Scaler {
-            scale: scale.to_string(),
-            y_name: name,
-            field: field.to_string(),
-        }
-    }
-}
 
-impl Val {
-    pub fn new(color: &str) -> Val {
-        Val {
-            value: color.to_string(),
-        }
-    }
-}
 
-impl Fill {
-    pub fn new(color: &str) -> Fill {
-        Fill {
-            fill: Val::new(color),
-        }
-    }
-}
+
 
 impl Visualization {
     pub fn new() -> Visualization {
@@ -90,16 +55,6 @@ impl Visualization {
 }
 
 
-impl Encoding {
-
-    pub fn new() -> Encoding {
-        Encoding {
-            enter: Visualization::new(),
-            update: Fill::new("steelblue"),
-            hover: Fill::new("red"),
-        }
-    }
-}
 
 impl Mark {
 
