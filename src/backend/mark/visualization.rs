@@ -14,9 +14,9 @@ pub struct Visualization {
 impl Visualization {
     pub fn new() -> Visualization {
         Visualization {
-            x: Scaler::new(XSCALE,"field", XAXIS.to_string()),
+            x: Scaler::new(XSCALE,"field", XCOORD.to_string()),
             width: Scaler::new(XSCALE, "band", 1),
-            y: Scaler::new(YSCALE, "field", YAXIS.to_string()),
+            y: Scaler::new(YSCALE, "field", YCOORD.to_string()),
             y2: Scaler::new(YSCALE, "value", 0),
         }
     }

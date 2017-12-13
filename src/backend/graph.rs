@@ -65,8 +65,8 @@ impl Graph {
                 signals: vec![],
                 data: vec![],
                 scales: vec![
-                    Scale::new(XSCALE, WIDTH, XAXIS, ScaleType::Band),
-                    Scale::new(YSCALE, HEIGHT, YAXIS, ScaleType::None),
+                    Scale::new(XSCALE, WIDTH, XCOORD, ScaleType::Band),
+                    Scale::new(YSCALE, HEIGHT, YCOORD, ScaleType::None),
                 ],
                 axes: vec![
                     Axis::new(Orientation::Bottom, XSCALE),
