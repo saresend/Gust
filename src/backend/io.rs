@@ -12,10 +12,9 @@ use serde_json;
 
 use backend::graph::Graph;
 
-/*
- * save_graph is a function that is trying to save a graph to the grust_build directory, so that its
- * contents can then be constructed into a visualization by the frontend
- */
+///
+/// save_graph is a function that is trying to save a graph to the grust_build directory, so that its
+/// contents can then be constructed into a visualization by the frontend 
 pub fn save_graph(graph: &Graph) -> Result<usize> {
     let serialized = serde_json::to_string(graph).unwrap();
     let _ = fs::create_dir("grust_build/");
@@ -32,6 +31,7 @@ pub fn save_graph(graph: &Graph) -> Result<usize> {
  * From Here on out it's non public functions; these are just utilities to make it easier
  * to implement the public interface
  */
+
 fn create_file(name: &str) -> File {
     let _ = fs::remove_file(name);
     fs::File::create(name).unwrap()

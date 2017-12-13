@@ -8,13 +8,14 @@ use serde::ser::SerializeStruct;
 
 use backend::signal::Signal;
 use backend::scale::*;
-use backend::data::Data;
+use backend::data::data::Data;
 use backend::axis::*;
 use backend::constants::*;
 use backend::mark::mark::Mark;
 
 
-
+/// Graph is the primary structure which encompasses all of the different possible graphs 
+/// we can build with this crate.
 pub struct Graph {
     schema: &'static str,
     pub description: String,
@@ -29,9 +30,9 @@ pub struct Graph {
     pub marks: Vec<Mark>,
 }
 
-/*
- * AutoSize represents the different padding options that exist in Vega
- */
+/// Since Grust is built to use the Vega visual specification, Autosize gives the different options
+/// available in how to pad the final visualization
+/// https://vega.github.io/vega/docs/specification/#autosize
 #[derive(Serialize)]
 #[serde(rename_all = "lowercase")]
 pub enum AutoSize {
@@ -41,7 +42,7 @@ pub enum AutoSize {
 }
 
 
-
+///Provides the different supported GraphTypes by Grust (and the list continues to grow!).
 pub enum GraphType {
     Bar,
     StackedBar,
@@ -49,13 +50,15 @@ pub enum GraphType {
 
 
 impl Graph {
-    //TODO: As Graph module gets fleshed out add more
-    pub fn new(description: String, graph_type: GraphType) -> Graph {
+    /// Creates a new graph, with a bunch of default configurations set up
+    /// Once the new graph is created we can go ahead and modify whichever relevant options 
+    /// we need to fine tune to create the final graph
+    pub fn new(graph_type: GraphType) -> Graph {
 
         match graph_type {
             GraphType::Bar => Graph {
                 schema: "https://vega.github.io/schema/vega/v3.0.json",
-                description: description,
+                description: "This is the description".to_string(),
                 width: 500,
                 height: 200,
                 padding: 5,
@@ -73,7 +76,7 @@ impl Graph {
                 marks: vec![Mark::new()],
             },
 
-            
+
             GraphType::StackedBar => Graph {},
 
         }

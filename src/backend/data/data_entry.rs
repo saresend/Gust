@@ -5,27 +5,24 @@ use serde::ser::SerializeStruct;
 
 use std::collections::HashMap;
 
-pub struct DataEntry<T: Serialize> {
-    pub data: HashMap<String, T>,
+pub struct DataEntry {
+    pub data: HashMap<String, i64>,
 }
 
-impl <T: Serialize> DataEntry<T> {
+impl DataEntry {
 
-    pub fn new() -> DataEntry<T> {
+    pub fn new() -> DataEntry {
         DataEntry {
             data: HashMap::new(),
         }
     }
 
-    pub fn insert(& mut self, key: String, value: T) {
+    pub fn insert(& mut self, key: String, value: i64) {
         &self.data.insert(key, value);
     }
 
-    pub fn insert(&mut self, key: &str, value: T) {
-        &self.data.insert(key.to_string(), value);
-    }
 }
-impl <T: Serialize> Serialize for DataEntry<T> {
+impl Serialize for DataEntry {
 
      fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
     where

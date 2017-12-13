@@ -1,7 +1,9 @@
 
 
 
-
+/// Contains a lot of different constants
+/// Since Vega uses a lot of string matching to generate their specification, Grust
+/// uses these constants to maintain integrity throughout different parts of the graph
 pub const XAXIS: &'static str = "x-axis";
 pub const YAXIS: &'static str = "y-axis";
 

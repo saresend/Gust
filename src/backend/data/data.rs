@@ -3,7 +3,6 @@
 
 use backend::data::data_entry::DataEntry;
 
-
 /*
  * The primary structure that holds series Data in it
  */
@@ -25,10 +24,9 @@ impl Data {
     pub fn create_fake_data(& mut self, _ : i32) {
         let v = vec!["A", "B", "C", "D", "E", "F", "G","H", "I", "J", "K"];
         for i in 0..10 {
-            self.values.push(DataEntry::new(v[i].to_string(), (i * i) as i32 ));
+            let e: DataEntry = DataEntry::new();
+            e.insert(v[i].to_string(), (i * i) as i64 );
+            self.values.push(e);
         }
     }
 }
-/* 
- * DataEntry represent a single point or bar on a graph
- */
