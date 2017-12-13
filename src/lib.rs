@@ -19,6 +19,8 @@ mod tests {
     use super::backend::data::data::Data;
     use super::backend::constants::*;
     use super::backend::io::save_graph;
+    use super::frontend::write::render_graph;
+    use std::path::Path;
 
     #[test]
     fn test_save_graph() {
@@ -33,6 +35,15 @@ mod tests {
         data.create_fake_data(20);
         g.data.push(data);
         let _ = save_graph(&g);
+    }
+    #[test]
+    fn test_html_gen() {
+        let mut g = Graph::new(GraphType::Bar);
+        let mut data = Data::new(SERIESNAME.to_string());
+        data.create_fake_data(20);
+        g.data.push(data);
+        let _ = save_graph(&g);
+        render_graph("test", Path::new("test.json"));
     }
     
 }
