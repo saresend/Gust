@@ -22,13 +22,13 @@ mod tests {
 
     #[test]
     fn test_save_graph() {
-        let g = Graph::new("Test Description".to_string(), GraphType::Bar);
+        let g = Graph::new(GraphType::Bar);
         let _ = save_graph(&g);
     }
 
     #[test] 
     fn test_hydrated_graph() {
-        let mut g = Graph::new("Populated_Graph".to_string(), GraphType::Bar);
+        let mut g = Graph::new(GraphType::Bar);
         let mut data = Data::new(SERIESNAME.to_string());
         data.create_fake_data(20);
         g.data.push(data);

@@ -6,7 +6,8 @@ use serde::ser::SerializeStruct;
 use std::collections::HashMap;
 
 pub struct DataEntry {
-    pub data: HashMap<String, i64>,
+    pub data: HashMap<&'static str, i64>,
+    pub quals: HashMap<&'static str, String>,
 }
 
 impl DataEntry {
@@ -14,11 +15,15 @@ impl DataEntry {
     pub fn new() -> DataEntry {
         DataEntry {
             data: HashMap::new(),
+            quals: HashMap::new(),
         }
     }
 
-    pub fn insert(& mut self, key: String, value: i64) {
+    pub fn insert_data(& mut self, key: &'static str, value: i64) {
         &self.data.insert(key, value);
+    }
+    pub fn insert_qual(& mut self, key: &'static str, value: String) {
+        &self.quals.insert(key, value);
     }
 
 }
@@ -29,7 +34,12 @@ impl Serialize for DataEntry {
         S: Serializer,
     {
         let mut s = serializer.serialize_struct("DataEntry", self.data.len())?;
-        self.data.into_iter().map(|x| { s.serialize_field(&x.0, &x.1)}).collect();
+        for (key, value) in self.data.iter() {
+           let _ =  s.serialize_field(&key, &value);
+        };
+        for (key, value) in self.quals.iter() {
+            let _ = s.serialize_field(&key, &value);
+        }
         s.end()
     }
 

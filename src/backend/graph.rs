@@ -45,7 +45,6 @@ pub enum AutoSize {
 ///Provides the different supported GraphTypes by Grust (and the list continues to grow!).
 pub enum GraphType {
     Bar,
-    StackedBar,
 }
 
 
@@ -75,10 +74,6 @@ impl Graph {
                 ],
                 marks: vec![Mark::new()],
             },
-
-
-            GraphType::StackedBar => Graph {},
-
         }
 
     }
