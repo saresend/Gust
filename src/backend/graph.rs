@@ -18,6 +18,7 @@ use backend::mark::mark::Mark;
 /// we can build with this crate.
 pub struct Graph {
     schema: &'static str,
+    pub identifier: String,
     pub description: String,
     pub width: u16,
     pub height: u16,
@@ -52,11 +53,12 @@ impl Graph {
     /// Creates a new graph, with a bunch of default configurations set up
     /// Once the new graph is created we can go ahead and modify whichever relevant options 
     /// we need to fine tune to create the final graph
-    pub fn new(graph_type: GraphType) -> Graph {
+    pub fn new(id: &str, graph_type: GraphType) -> Graph {
 
         match graph_type {
             GraphType::Bar => Graph {
                 schema: "https://vega.github.io/schema/vega/v3.0.json",
+                identifier: id.to_string(),
                 description: "This is the description".to_string(),
                 width: 500,
                 height: 200,

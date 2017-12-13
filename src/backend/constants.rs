@@ -19,3 +19,4 @@ pub const SERIESNAME: &'static str = "table1";
 
 pub const XCOORD: &'static str = "category";
 pub const YCOORD: &'static str = "amount";
+pub const ZCOORD: &'static str = "c";

@@ -24,13 +24,13 @@ mod tests {
 
     #[test]
     fn test_save_graph() {
-        let g = Graph::new(GraphType::Bar);
+        let g = Graph::new("test0", GraphType::Bar);
         let _ = save_graph(&g);
     }
 
     #[test] 
     fn test_hydrated_graph() {
-        let mut g = Graph::new(GraphType::Bar);
+        let mut g = Graph::new("test1", GraphType::Bar);
         let mut data = Data::new(SERIESNAME.to_string());
         data.create_fake_data(20);
         g.data.push(data);
@@ -38,12 +38,12 @@ mod tests {
     }
     #[test]
     fn test_html_gen() {
-        let mut g = Graph::new(GraphType::Bar);
+        let mut g = Graph::new("test2", GraphType::Bar);
         let mut data = Data::new(SERIESNAME.to_string());
         data.create_fake_data(20);
         g.data.push(data);
         let _ = save_graph(&g);
-        render_graph("test", Path::new("test.json"));
+        render_graph("test", Path::new("test2.json"));
     }
     
 }
