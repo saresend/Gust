@@ -3,32 +3,36 @@ use serde::ser::Serialize;
 use serde::Serializer;
 use serde::ser::SerializeStruct;
 
-use backend::constants::{XAXIS, YAXIS};
+use std::collections::HashMap;
 
-pub struct DataEntry {
-    x_value: String, 
-    y_value: i32, 
+pub struct DataEntry<T: Serialize> {
+    pub data: HashMap<String, T>,
 }
 
+impl <T: Serialize> DataEntry<T> {
 
-impl DataEntry {
-
-    pub fn new(label: String, y_val: i32) -> DataEntry {
+    pub fn new() -> DataEntry<T> {
         DataEntry {
-            x_value:label,
-            y_value: y_val
+            data: HashMap::new(),
         }
     }
+
+    pub fn insert(& mut self, key: String, value: T) {
+        &self.data.insert(key, value);
+    }
+
+    pub fn insert(&mut self, key: &str, value: T) {
+        &self.data.insert(key.to_string(), value);
+    }
 }
-impl Serialize for DataEntry {
+impl <T: Serialize> Serialize for DataEntry<T> {
 
      fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
     where
         S: Serializer,
     {
-        let mut s = serializer.serialize_struct("DataEntry", 2)?;
-        let _ = s.serialize_field(XAXIS,&self.x_value);
-        let _ = s.serialize_field(YAXIS,&self.y_value);
+        let mut s = serializer.serialize_struct("DataEntry", self.data.len())?;
+        self.data.into_iter().map(|x| { s.serialize_field(&x.0, &x.1)}).collect();
         s.end()
     }
 
