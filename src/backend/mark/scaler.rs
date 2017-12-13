@@ -5,24 +5,23 @@ use serde::Serializer;
 use serde::ser::SerializeStruct;
 
 
-
-pub struct Scaler {
+pub struct Scaler<T: Serialize > {
     pub scale: String,
     pub y_name: &'static str,
-    pub field: String,
+    pub field: T,
 }
 
-impl  Scaler {
-    pub fn new(scale: &str,name: &'static str, field: &str) -> Scaler {
+impl <T: Serialize> Scaler<T> {
+    pub fn new(scale: &str,name: &'static str, field: T) -> Scaler<T> {
         Scaler {
             scale: scale.to_string(),
             y_name: name,
-            field: field.to_string(),
+            field: field,
         }
     }
 }
 
-impl Serialize for Scaler {
+impl <T: Serialize> Serialize for Scaler<T> {
     fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
     where
         S: Serializer,

@@ -4,20 +4,20 @@ use backend::constants::*;
 
 #[derive(Serialize)]
 pub struct Visualization {
-    pub x: Scaler,
-    pub width: Scaler,
-    pub y: Scaler,
-    pub y2: Scaler,
+    pub x: Scaler<String>,
+    pub width: Scaler<i32>,
+    pub y: Scaler<String>,
+    pub y2: Scaler<i32>,
 }
 
 
 impl Visualization {
     pub fn new() -> Visualization {
         Visualization {
-            x: Scaler::new(XSCALE,"field", XAXIS),
-            width: Scaler::new(XSCALE, "band", "1"),
-            y: Scaler::new(YSCALE, "field", YAXIS),
-            y2: Scaler::new(YSCALE, "value", "0"),
+            x: Scaler::new(XSCALE,"field", XAXIS.to_string()),
+            width: Scaler::new(XSCALE, "band", 1),
+            y: Scaler::new(YSCALE, "field", YAXIS.to_string()),
+            y2: Scaler::new(YSCALE, "value", 0),
         }
     }
 }

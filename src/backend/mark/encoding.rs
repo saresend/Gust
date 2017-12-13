@@ -1,3 +1,9 @@
+
+
+use backend::mark::fill::{Fill};
+use backend::mark::visualization::Visualization;
+
+
 #[derive(Serialize)]
 pub struct Encoding {
     pub enter: Visualization,

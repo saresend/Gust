@@ -11,7 +11,7 @@ use backend::scale::*;
 use backend::data::Data;
 use backend::axis::*;
 use backend::constants::*;
-use backend::mark::Mark;
+use backend::mark::mark::Mark;
 
 pub struct Graph {
     schema:&'static str,
