@@ -2,6 +2,9 @@
 name = "gust"
 version = "0.1.0"
 authors = ["Samuel Resendez <saresend@usc.edu>"]
+description = """ A small charting library for generating d3 and html charts using Rust """
+license = "Unlicense/MIT"
+
 
 [dependencies]
 serde_json = "1.0"
