@@ -10,9 +10,9 @@ use backend::elements::constants::*;
  */
 #[derive(Serialize)]
 pub struct Data {
-    name: String,
-    values: Vec<DataEntry>,
-    transform: Vec<Transform>,
+    pub name: String,
+    pub values: Vec<DataEntry>,
+    pub transform: Vec<Transform>,
 }
 
 impl Data {

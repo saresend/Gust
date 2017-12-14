@@ -19,6 +19,15 @@ impl DataEntry {
         }
     }
 
+    pub fn new_barchart_point(category: &'static str, value: i64) -> DataEntry {
+        let mut e = DataEntry {
+            data: HashMap::new(),
+            quals: HashMap::new(),
+        };
+        e.data.insert(category, value);
+        e
+    }
+
     pub fn insert_data(& mut self, key: &'static str, value: i64) {
         &self.data.insert(key, value);
     }

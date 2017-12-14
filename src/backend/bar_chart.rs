@@ -9,6 +9,7 @@ use serde::ser::SerializeStruct;
 use backend::elements::constants::*;
 use backend::elements::graph::{GraphType, AutoSize};
 use backend::elements::data::data::Data;
+use backend::elements::data::data_entry::DataEntry;
 use backend::elements::signal::Signal;
 use backend::elements::scale::{Scale, ScaleType};
 use backend::elements::axis::{Axis, Orientation};
@@ -33,7 +34,7 @@ pub struct BarChart {
 
 impl BarChart {
 
-
+    /// Creates a new Chart with the Appropriate settings to render into a vega bar chart
     pub fn new(identifier: &str) -> BarChart {
         BarChart {
             identifier: identifier.to_string(),
@@ -42,7 +43,7 @@ impl BarChart {
             height: 200,
             padding: 5,
             autosize: AutoSize::Pad,
-            data: vec![],
+            data: vec![Data::new(SERIESNAME.to_string())],
             signals: vec![],
             scales: vec![
                 Scale::new(XSCALE, WIDTH, XCOORD, ScaleType::Band),
@@ -56,6 +57,11 @@ impl BarChart {
                 Mark::new(GraphType::Bar),
             ],
         }
+    }
+
+
+    pub fn add_data_point(& mut self, category: &str, value: i64) {
+        self.data[0].values.push(DataEntry::new_barchart_point(category, value));
     }
 }
 
