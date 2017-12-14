@@ -60,7 +60,7 @@ impl BarChart {
     }
 
 
-    pub fn add_data_point(& mut self, category: &str, value: i64) {
+    pub fn add_data_point(& mut self, category: &'static str, value: i64) {
         self.data[0].values.push(DataEntry::new_barchart_point(category, value));
     }
 }

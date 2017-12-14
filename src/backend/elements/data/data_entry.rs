@@ -4,6 +4,7 @@ use serde::Serializer;
 use serde::ser::SerializeStruct;
 
 use std::collections::HashMap;
+use backend::elements::constants::*;
 
 pub struct DataEntry {
     pub data: HashMap<&'static str, i64>,
@@ -24,7 +25,8 @@ impl DataEntry {
             data: HashMap::new(),
             quals: HashMap::new(),
         };
-        e.data.insert(category, value);
+        e.insert_qual(XCOORD, category.to_string());
+        e.insert_data(YCOORD, value);
         e
     }
 

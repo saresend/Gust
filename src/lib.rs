@@ -21,7 +21,11 @@ mod tests {
    
     #[test]
     fn test_bar_chart() {
-        let b = BarChart::new("test1");
+        let mut b = BarChart::new("test1");
+        let v = vec!["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "J"];
+        for i in 0..10 {
+            b.add_data_point(v[i], (i * i) as i64);
+        }
         save_graph(&b).unwrap();
     }
     
