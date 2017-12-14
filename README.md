@@ -18,7 +18,7 @@ I recently became obsessed with building small tools to make my development a bi
 
 ## Samples ## 
 <p align="center">
-<img src="https://screenshots.firefox.com/MvTdb5Ip5HyugTTj/vega.github.io">
+<img src="stackchart.png">
 </p>
 
 ## How to use it ## 
