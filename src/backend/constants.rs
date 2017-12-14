@@ -18,6 +18,6 @@ pub const GRAPHNAME: &'static str = "graph";
 
 pub const SERIESNAME: &'static str = "table1";
 
-pub const XCOORD: &'static str = "category";
-pub const YCOORD: &'static str = "amount";
+pub const XCOORD: &'static str = "x";
+pub const YCOORD: &'static str = "y";
 pub const ZCOORD: &'static str = "c";

@@ -8,121 +8,136 @@
     "data": [
         {
             "name": "table1",
+            "values": [],
+            "transform": [
+                {
+                    "type": "stack",
+                    "groupby": [
+                        "x"
+                    ],
+                    "sort": {
+                        "field": "c"
+                    },
+                    "field": "y"
+                }
+            ]
+        },
+        {
+            "name": "table1",
             "values": [
                 {
-                    "amount": 0,
-                    "category": 0,
-                    "c": 1
-                },
-                {
-                    "amount": 2,
-                    "category": 1,
-                    "c": 0
-                },
-                {
-                    "category": 2,
-                    "c": 1,
-                    "amount": 4
-                },
-                {
-                    "c": 0,
-                    "amount": 6,
-                    "category": 3
-                },
-                {
-                    "c": 1,
-                    "category": 4,
-                    "amount": 8
-                },
-                {
-                    "c": 0,
-                    "amount": 10,
-                    "category": 5
-                },
-                {
-                    "category": 6,
-                    "c": 1,
-                    "amount": 12
-                },
-                {
-                    "c": 0,
-                    "amount": 14,
-                    "category": 7
-                },
-                {
-                    "category": 8,
-                    "amount": 16,
+                    "x": 0,
+                    "y": 0,
                     "c": 1
                 },
                 {
                     "c": 0,
-                    "amount": 18,
-                    "category": 9
+                    "x": 1,
+                    "y": 2
                 },
                 {
-                    "amount": 0,
-                    "c": 1,
-                    "category": 0
+                    "y": 4,
+                    "x": 2,
+                    "c": 1
                 },
                 {
-                    "amount": 2,
                     "c": 0,
-                    "category": 1
+                    "x": 3,
+                    "y": 6
                 },
                 {
-                    "category": 2,
-                    "c": 1,
-                    "amount": 4
+                    "x": 4,
+                    "y": 8,
+                    "c": 1
                 },
                 {
-                    "amount": 6,
+                    "y": 10,
                     "c": 0,
-                    "category": 3
+                    "x": 5
                 },
                 {
-                    "amount": 8,
-                    "c": 1,
-                    "category": 4
+                    "x": 6,
+                    "y": 12,
+                    "c": 1
                 },
                 {
-                    "category": 5,
+                    "y": 14,
                     "c": 0,
-                    "amount": 10
+                    "x": 7
                 },
                 {
                     "c": 1,
-                    "category": 6,
-                    "amount": 12
+                    "x": 8,
+                    "y": 16
                 },
                 {
-                    "category": 7,
-                    "amount": 14,
+                    "c": 0,
+                    "x": 9,
+                    "y": 18
+                },
+                {
+                    "y": 0,
+                    "x": 0,
+                    "c": 1
+                },
+                {
+                    "x": 1,
+                    "c": 0,
+                    "y": 2
+                },
+                {
+                    "c": 1,
+                    "y": 4,
+                    "x": 2
+                },
+                {
+                    "c": 0,
+                    "x": 3,
+                    "y": 6
+                },
+                {
+                    "y": 8,
+                    "x": 4,
+                    "c": 1
+                },
+                {
+                    "x": 5,
+                    "y": 10,
                     "c": 0
                 },
                 {
-                    "category": 8,
+                    "x": 6,
                     "c": 1,
-                    "amount": 16
+                    "y": 12
                 },
                 {
-                    "category": 9,
+                    "x": 7,
                     "c": 0,
-                    "amount": 18
+                    "y": 14
+                },
+                {
+                    "x": 8,
+                    "c": 1,
+                    "y": 16
+                },
+                {
+                    "x": 9,
+                    "y": 18,
+                    "c": 0
                 }
             ],
-            "transforms": []
-        }
-    ],
-    "transforms": [
-        {
-            "type": "stack",
-            "groupby": [
-                "category"
-            ],
-            "sort": {
-                "field": "c"
-            },
-            "field": "amount"
+            "transform": [
+                {
+                    "type": "stack",
+                    "groupby": [
+                        "x"
+                    ],
+                    "sort": {
+                        "field": "c"
+                    },
+                    "field": "y"
+                }
+            ]
         }
     ],
     "signals": [],
@@ -132,7 +147,7 @@
             "type": "band",
             "domain": {
                 "data": "table1",
-                "field": "category"
+                "field": "x"
             },
             "range": "width",
             "padding": 0.05,
@@ -142,7 +157,7 @@
             "name": "yscale",
             "domain": {
                 "data": "table1",
-                "field": "amount"
+                "field": "y"
             },
             "range": "height",
             "padding": 0.05,
@@ -169,7 +184,7 @@
             "encode": {
                 "enter": {
                     "x": {
-                        "field": "category",
+                        "field": "x",
                         "scale": "xscale"
                     },
                     "width": {
@@ -177,7 +192,7 @@
                         "scale": "xscale"
                     },
                     "y": {
-                        "field": "amount",
+                        "field": "y",
                         "scale": "yscale"
                     },
                     "y2": {

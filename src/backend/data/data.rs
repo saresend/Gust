@@ -12,7 +12,7 @@ use backend::constants::*;
 pub struct Data {
     name: String,
     values: Vec<DataEntry>,
-    transforms: Vec<Transform>,
+    transform: Vec<Transform>,
 }
 
 impl Data {
@@ -21,8 +21,12 @@ impl Data {
         Data {
             name: name,
             values: vec![],
-            transforms: vec![],
+            transform: vec![],
         }
+    }
+
+    pub fn add_transform(& mut self, transform: Transform) {
+        self.transform.push(transform);
     }
 
     pub fn create_fake_data(& mut self, _ : i32) {

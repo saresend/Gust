@@ -26,7 +26,6 @@ pub struct Graph {
     pub padding: u16,
     pub autosize: AutoSize,
     pub data: Vec<Data>,
-    pub transforms: Vec<Transform>,
     pub signals: Vec<Signal>,
     pub scales: Vec<Scale>,
     pub axes: Vec<Axis>,
@@ -68,7 +67,7 @@ impl Graph {
                 padding: 5,
                 autosize: AutoSize::Pad,
                 signals: vec![],
-                transforms: vec![],
+               
                 data: vec![],
                 scales: vec![
                     Scale::new(XSCALE, WIDTH, XCOORD, ScaleType::Band),
@@ -80,7 +79,8 @@ impl Graph {
                 ],
                 marks: vec![Mark::new()],
             },
-            GraphType::StackedBar => Graph {
+            GraphType::StackedBar => {
+                Graph {
                 schema: "https://vega.github.io/schema/vega/v3.0.json",
                 identifier: id.to_string(),
                 description: "This is the description".to_string(),
@@ -90,7 +90,7 @@ impl Graph {
                 autosize: AutoSize::Pad,
                 signals: vec![],
                 data: vec![],
-                transforms: vec![Transform::new(TransformType::Stack)],
+               
                 scales: vec![
                     Scale::new(XSCALE, WIDTH, XCOORD, ScaleType::Band),
                     Scale::new(YSCALE, HEIGHT, YCOORD, ScaleType::None),
@@ -102,7 +102,7 @@ impl Graph {
                 ],
                 marks: vec![Mark::new()],
             }
-        }
+        }}
 
     }
 }
@@ -126,7 +126,7 @@ impl Serialize for Graph {
         let _ = s.serialize_field("padding", &self.padding);
         let _ = s.serialize_field("autosize", &self.autosize);
         let _ = s.serialize_field("data", &self.data);
-        let _ = s.serialize_field("transforms", &self.transforms);
+       
         let _ = s.serialize_field("signals", &self.signals);
         let _ = s.serialize_field("scales", &self.scales);
         let _ = s.serialize_field("marks", &self.marks);

@@ -17,6 +17,7 @@ mod tests {
     
     use super::backend::graph::{Graph, GraphType};
     use super::backend::data::data::Data;
+    use super::backend::data::transform::*;
     use super::backend::constants::*;
     use super::backend::io::save_graph;
     use super::frontend::write::render_graph;
@@ -49,6 +50,7 @@ mod tests {
     fn test_stacked_bar_chart() {
         let mut g = Graph::new("StackedBar", GraphType::StackedBar);
         let mut data = Data::new(SERIESNAME.to_string());
+        data.add_transform(Transform::new(TransformType::Stack));
         data.create_fake_stack_bchart_data();
         g.data.push(data);
         let _ = save_graph(&g);
