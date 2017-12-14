@@ -55,7 +55,7 @@ impl Data {
             let mut e = DataEntry::new();
             e.insert_data(XCOORD, i);
             e.insert_data(YCOORD, 2 * i);
-            if i % 2 == 0 {
+            if i % 2 != 0 {
                 e.insert_data(ZCOORD,1);
             }
             else {

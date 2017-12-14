@@ -12,7 +12,7 @@ use backend::data::data::Data;
 use backend::axis::*;
 use backend::constants::*;
 use backend::mark::mark::Mark;
-use backend::data::transform::{Transform, TransformType};
+
 
 
 /// Graph is the primary structure which encompasses all of the different possible graphs 

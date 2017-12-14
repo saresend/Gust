@@ -15,4 +15,10 @@ This is still very much a work in progress! APIs are very unstable and subject t
 
 I recently became obsessed with building small tools to make my development a bit more enjoyable. Gust, is one such tool! It's a small charting library that aims to make it as simple as possible to create interesting visual representations. 
 
+
+## Samples ## 
+<p align="center">
+<img src="https://screenshots.firefox.com/MvTdb5Ip5HyugTTj/vega.github.io">
+</p>
+
 ## How to use it ## 

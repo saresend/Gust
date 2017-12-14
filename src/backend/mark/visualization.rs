@@ -8,6 +8,7 @@ pub struct Visualization {
     pub width: Scaler<i32>,
     pub y: Scaler<String>,
     pub y2: Scaler<i32>,
+    pub fill: Option<Scaler<String>>,
 }
 
 
@@ -18,6 +19,7 @@ impl Visualization {
             width: Scaler::new(XSCALE, "band", 1),
             y: Scaler::new(YSCALE, "field", YCOORD.to_string()),
             y2: Scaler::new(YSCALE, "value", 0),
+            fill: Some(Scaler::new(ZSCALE, "field", ZCOORD.to_string())),
         }
     }
 }
