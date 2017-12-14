@@ -34,4 +34,30 @@ impl Data {
             self.values.push(e);
         }
     }
+    pub fn create_fake_stack_bchart_data(&mut self) {
+        for i in 0..10 {
+            let mut e = DataEntry::new();
+            e.insert_data(XCOORD, i);
+            e.insert_data(YCOORD, 2 * i);
+            if i % 2 == 0 {
+                e.insert_data(ZCOORD,1);
+            }
+            else {
+                e.insert_data(ZCOORD, 0);
+            }
+            self.values.push(e);
+        }
+        for i in 0..10 {
+            let mut e = DataEntry::new();
+            e.insert_data(XCOORD, i);
+            e.insert_data(YCOORD, 2 * i);
+            if i % 2 == 0 {
+                e.insert_data(ZCOORD,1);
+            }
+            else {
+                e.insert_data(ZCOORD, 0);
+            }
+            self.values.push(e);
+        }
+    }
 }

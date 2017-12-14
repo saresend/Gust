@@ -9,6 +9,7 @@ pub const YAXIS: &'static str = "y-axis";
 
 pub const XSCALE: &'static str = "xscale";
 pub const YSCALE: &'static str = "yscale";
+pub const ZSCALE: &'static str = "zscale";
 
 pub const WIDTH: &'static str = "width";
 pub const HEIGHT: &'static str = "height";

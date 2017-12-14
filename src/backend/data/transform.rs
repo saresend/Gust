@@ -55,10 +55,10 @@ impl Serialize for Transform {
         S: Serializer,
     {
         let mut s = serializer.serialize_struct("transform", 4)?;
-        s.serialize_field("type", &self.transform_type);
-        s.serialize_field("groupby", &self.group_by);
-        s.serialize_field("sort", &self.sort);
-        s.serialize_field("field", &self.field);
+        let _ = s.serialize_field("type", &self.transform_type);
+        let _ = s.serialize_field("groupby", &self.group_by);
+        let _ = s.serialize_field("sort", &self.sort);
+        let _ = s.serialize_field("field", &self.field);
         s.end()
     }
 

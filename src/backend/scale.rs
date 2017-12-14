@@ -21,6 +21,7 @@ pub struct Scale {
 #[serde(rename_all="lowercase")]
 pub enum ScaleType {
     Band,
+    Ordinal, 
     None, 
 }
 
@@ -64,6 +65,9 @@ impl Serialize for Scale {
             ScaleType::Band => {
                 let _ = s.serialize_field("type", &self.scale_type);
                 },
+            ScaleType::Ordinal => {
+                let _ = s.serialize_field("type", &self.scale_type);
+            }
             ScaleType::None => {},
         };
         let _ = s.serialize_field("domain", &self.domain);

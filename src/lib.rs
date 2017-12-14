@@ -45,5 +45,14 @@ mod tests {
         let _ = save_graph(&g);
         render_graph("test", Path::new("test2.json"));
     }
+    #[test]
+    fn test_stacked_bar_chart() {
+        let mut g = Graph::new("StackedBar", GraphType::StackedBar);
+        let mut data = Data::new(SERIESNAME.to_string());
+        data.create_fake_stack_bchart_data();
+        g.data.push(data);
+        let _ = save_graph(&g);
+        
+    }
     
 }
