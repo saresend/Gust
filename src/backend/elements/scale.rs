@@ -7,7 +7,7 @@ use serde::ser::Serialize;
 use serde::Serializer;
 use serde::ser::SerializeStruct;
 
-use backend::constants::*;
+use backend::elements::constants::*;
 
 pub struct Scale {
     pub name: String, 

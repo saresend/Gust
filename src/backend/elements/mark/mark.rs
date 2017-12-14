@@ -8,9 +8,11 @@ use serde::ser::Serialize;
 use serde::Serializer;
 use serde::ser::SerializeStruct;
 
-use backend::constants::*;
+use backend::elements::constants::*;
 
-use backend::mark::encoding::Encoding;
+use backend::elements::graph::GraphType;
+
+use backend::elements::mark::encoding::Encoding;
 
 
 pub struct Mark {
@@ -26,11 +28,11 @@ pub struct Source {
 
 impl Mark {
 
-    pub fn new() -> Mark {
+    pub fn new(graph_type: GraphType) -> Mark {
         Mark {
             mark_type: "rect".to_string(),
             from: Source { data: SERIESNAME.to_string() },
-            encode: Encoding::new(),
+            encode: Encoding::new(graph_type),
         }
     }
 }

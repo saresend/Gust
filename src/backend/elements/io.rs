@@ -10,7 +10,7 @@ use std::fs::File;
 use std::io::{Write, Result};
 use serde_json;
 
-use backend::graph::Graph;
+use backend::elements::graph::Graph;
 
 ///
 /// save_graph is a function that is trying to save a graph to the grust_build directory, so that its

@@ -6,12 +6,12 @@ use serde::ser::Serialize;
 use serde::Serializer;
 use serde::ser::SerializeStruct;
 
-use backend::signal::Signal;
-use backend::scale::*;
-use backend::data::data::Data;
-use backend::axis::*;
-use backend::constants::*;
-use backend::mark::mark::Mark;
+use backend::elements::signal::Signal;
+use backend::elements::scale::*;
+use backend::elements::data::data::Data;
+use backend::elements::axis::*;
+use backend::elements::constants::*;
+use backend::elements::mark::mark::Mark;
 
 
 
@@ -77,7 +77,7 @@ impl Graph {
                     Axis::new(Orientation::Bottom, XSCALE),
                     Axis::new(Orientation::Left, YSCALE),
                 ],
-                marks: vec![Mark::new()],
+                marks: vec![Mark::new(GraphType::Bar)],
             },
             GraphType::StackedBar => {
                 Graph {
@@ -100,7 +100,7 @@ impl Graph {
                     Axis::new(Orientation::Bottom, XSCALE),
                     Axis::new(Orientation::Left, YSCALE),
                 ],
-                marks: vec![Mark::new()],
+                marks: vec![Mark::new(GraphType::StackedBar)],
             }
         }}
 

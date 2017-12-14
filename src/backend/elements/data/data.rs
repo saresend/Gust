@@ -1,10 +1,10 @@
 
 
 
-use backend::data::data_entry::DataEntry;
-use backend::data::transform::Transform;
+use backend::elements::data::data_entry::DataEntry;
+use backend::elements::data::transform::Transform;
 
-use backend::constants::*;
+use backend::elements::constants::*;
 /*
  * The primary structure that holds series Data in it
  */

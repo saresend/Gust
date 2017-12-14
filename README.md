@@ -1,7 +1,7 @@
 # Gust
 A charting library for rust!
 
-[![Build Status](https://travis-ci.org/saresend/Grust.svg?branch=master)](https://travis-ci.org/saresend/Grust)
+[![Build Status](https://travis-ci.org/saresend/Grust.svg?branch=master)](https://travis-ci.org/saresend/Gust.svg?branch=master)
 
 **Disclaimer**
 This is still very much a work in progress! APIs are very unstable and subject to change. Contributions and suggestions are welcomed and greatly appreciated! 

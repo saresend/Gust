@@ -1,8 +1,8 @@
 
 
-use backend::mark::fill::{Fill};
-use backend::mark::visualization::Visualization;
-
+use backend::elements::mark::fill::{Fill};
+use backend::elements::mark::visualization::Visualization;
+use backend::elements::graph::GraphType;
 
 #[derive(Serialize)]
 pub struct Encoding {
@@ -15,9 +15,9 @@ pub struct Encoding {
 
 impl Encoding {
 
-    pub fn new() -> Encoding {
+    pub fn new(graph_type: GraphType) -> Encoding {
         Encoding {
-            enter: Visualization::new(),
+            enter: Visualization::new(graph_type),
             update: Fill::new("steelblue"),
             hover: Fill::new("red"),
         }

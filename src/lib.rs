@@ -15,11 +15,11 @@ pub mod frontend;
 #[cfg(test)]
 mod tests {
     
-    use super::backend::graph::{Graph, GraphType};
-    use super::backend::data::data::Data;
-    use super::backend::data::transform::*;
-    use super::backend::constants::*;
-    use super::backend::io::save_graph;
+    use super::backend::elements::graph::{Graph, GraphType};
+    use super::backend::elements::data::data::Data;
+    use super::backend::elements::data::transform::*;
+    use super::backend::elements::constants::*;
+    use super::backend::elements::io::save_graph;
     use super::frontend::write::render_graph;
     use std::path::Path;
 
