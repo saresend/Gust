@@ -14,6 +14,7 @@ use backend::elements::signal::Signal;
 use backend::elements::scale::{Scale, ScaleType};
 use backend::elements::axis::{Axis, Orientation};
 use backend::elements::mark::mark::Mark;
+use backend::elements::traits::identifier::Identifiable;
 
 pub struct BarChart {
 
@@ -86,5 +87,11 @@ impl Serialize for BarChart {
         s.serialize_field("axes", &self.axes)?;
         s.serialize_field("marks", &self.marks)?;
         s.end()
+    }
+}
+impl Identifiable for BarChart {
+
+    fn get_identifier(&self) -> String {
+        self.identifier.to_string()
     }
 }

@@ -17,6 +17,7 @@ mod tests {
     
     
     use super::backend::bar_chart::BarChart;
+    use super::backend::stacked_bar_chart::StackedBarChart;
     use super::backend::elements::io::save_graph;
    
     #[test]
@@ -27,6 +28,28 @@ mod tests {
             b.add_data_point(v[i], (i * i) as i64);
         }
         save_graph(&b).unwrap();
+    }
+    #[test]
+    fn test_stacked_bar_chart() {
+        let mut b = StackedBarChart::new("test_stacked_b_chart");
+        for i in 0..10 {
+            
+            let mut z = 0;
+            if i % 2 == 0 {
+                z = 1;
+            }
+             b.add_data_point(i, i*i, z);
+        }
+        for i in 0..10 {
+            
+            let mut z = 0;
+            if i % 2 != 0 {
+                z = 1;
+            }
+             b.add_data_point(i, i*i, z);
+        }
+        save_graph(&b).unwrap();
+       
     }
     
 }

@@ -7,13 +7,16 @@ use serde::ser::Serialize;
 use serde::Serializer;
 use serde::ser::SerializeStruct;
 
-use backend::elements::graph::AutoSize;
+use backend::elements::graph::{AutoSize, GraphType};
 use backend::elements::data::data::Data;
+use backend::elements::data::data_entry::DataEntry;
 use backend::elements::signal::Signal;
-use backend::elements::axis::Axis;
+use backend::elements::axis::{Axis, Orientation};
 use backend::elements::mark::mark::Mark;
-use backend::elements::scale::Scale;
-use backend::elements::data::transform::Transform;
+use backend::elements::scale::{Scale, ScaleType};
+use backend::elements::data::transform::{Transform, TransformType};
+use backend::elements::constants::*;
+use backend::elements::traits::identifier::Identifiable;
 
 pub struct StackedBarChart {
 
@@ -35,6 +38,44 @@ pub struct StackedBarChart {
 
 
 impl StackedBarChart {
+
+    pub fn new(identifier: &str) -> StackedBarChart {
+        StackedBarChart {
+            identifier: identifier.to_string(),
+            description: "New Stacked Bar Chart".to_string(),
+            width: 500,
+            height: 300,
+            padding: 5,
+            autosize: AutoSize::Pad,
+            data: vec![
+                Data::new(SERIESNAME.to_string()),
+            ],
+            signals: vec![],
+            scales: vec![
+                Scale::new(XSCALE, WIDTH, XCOORD, ScaleType::Band),
+                Scale::new(YSCALE, HEIGHT, YCOORD, ScaleType::None),
+                Scale::new(ZSCALE, "category", ZCOORD, ScaleType::Ordinal),
+            ],
+            axes: vec![
+                Axis::new(Orientation::Bottom, XSCALE),
+                Axis::new(Orientation::Left, YSCALE),
+            ],
+            marks: vec![
+                Mark::new(GraphType::StackedBar),
+            ],
+            transforms: vec![
+                Transform::new(TransformType::Stack),
+            ],
+        }
+    }
+
+    pub fn add_data_point(& mut self, x: i64, y: i64, z: i64) {
+        let mut data_point = DataEntry::new();
+        data_point.insert_data(XCOORD, x);
+        data_point.insert_data(YCOORD, y);
+        data_point.insert_data(ZCOORD, z);
+        self.data[0].values.push(data_point);
+    }
 
 
 
@@ -58,5 +99,12 @@ impl Serialize for StackedBarChart {
         s.serialize_field("marks", &self.marks)?;
         s.serialize_field("transform", &self.transforms)?;
         s.end()
+    }
+}
+
+impl Identifiable for StackedBarChart {
+
+    fn get_identifier(&self) -> String {
+        self.identifier.to_string()
     }
 }

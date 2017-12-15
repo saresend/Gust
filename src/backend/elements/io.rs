@@ -10,15 +10,17 @@ use std::fs::File;
 use std::io::{Write, Result};
 use serde_json;
 
-use backend::bar_chart::BarChart;
+use serde::ser::Serialize;
+use backend::elements::traits::identifier::Identifiable;
 
 ///
 /// save_graph is a function that is trying to save a graph to the grust_build directory, so that its
 /// contents can then be constructed into a visualization by the frontend 
-pub fn save_graph(graph: &BarChart) -> Result<usize> {
-    let serialized = serde_json::to_string(graph).unwrap();
+pub fn  save_graph<T: Serialize, Identifiable>(graph: T) -> Result<usize> 
+{
+    let serialized = serde_json::to_string(&graph).unwrap();
     let _ = fs::create_dir("grust_build/");
-    let file_path = format!("grust_build/{}.json", graph.identifier);
+    let file_path = format!("grust_build/{}.json", graph.get_identifier());
     let mut file = create_file(&file_path);
     file.write(serialized.as_bytes())
 
