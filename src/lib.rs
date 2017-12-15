@@ -27,7 +27,7 @@ mod tests {
         for i in 0..10 {
             b.add_data_point(v[i], (i * i) as i64);
         }
-        save_graph(&b).unwrap();
+        save_graph(b).unwrap();
     }
     #[test]
     fn test_stacked_bar_chart() {
@@ -48,7 +48,7 @@ mod tests {
             }
              b.add_data_point(i, i*i, z);
         }
-        save_graph(&b).unwrap();
+        save_graph(b).unwrap();
        
     }
     

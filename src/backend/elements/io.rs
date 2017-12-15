@@ -12,11 +12,10 @@ use serde_json;
 
 use serde::ser::Serialize;
 use backend::elements::traits::identifier::Identifiable;
-
 ///
 /// save_graph is a function that is trying to save a graph to the grust_build directory, so that its
 /// contents can then be constructed into a visualization by the frontend 
-pub fn  save_graph<T: Serialize, Identifiable>(graph: T) -> Result<usize> 
+pub fn  save_graph<T: Serialize + Identifiable>(graph: T) -> Result<usize> 
 {
     let serialized = serde_json::to_string(&graph).unwrap();
     let _ = fs::create_dir("grust_build/");
@@ -26,14 +25,10 @@ pub fn  save_graph<T: Serialize, Identifiable>(graph: T) -> Result<usize>
 
 }
 
-
-
-
 /*
  * From Here on out it's non public functions; these are just utilities to make it easier
  * to implement the public interface
  */
-
 fn create_file(name: &str) -> File {
     let _ = fs::remove_file(name);
     fs::File::create(name).unwrap()
