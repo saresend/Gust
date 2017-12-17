@@ -19,7 +19,7 @@ pub struct BarChartValue {
 pub struct BarChartScale {
     pub name: String,
     pub scale_type: String,
-    pub domain: BarChartDomain,
+    domain: BarChartDomain,
     pub range: String,
     pub padding: f64,
 }
@@ -84,19 +84,29 @@ pub struct BarChartMark {
     encode: BarChartEncoding,
 }
 
+impl BarChartMark {
+    pub fn create_mark() -> BarChartMark {
+        BarChartMark {
+            mark_type: String::from("rect"),
+            from: KeyVal::new("data", "table"),
+            encode: BarChartEncoding::create(),
+        }
+    }
+}
+
 struct BarChartEncoding {
     enter: BarChartEnter,
     update: BarChartFill,
     hover: BarChartFill,
 }
 impl BarChartEncoding {
-
     pub fn create() -> BarChartEncoding {
         BarChartEncoding {
-            enter: BarChartEnter::new(),
+            enter: BarChartEnter::default(),
+            update: BarChartFill::new("steelblue"),
+            hover: BarChartFill::new("red"),
         }
     }
-
 }
 
 struct BarChartEnter {
@@ -105,17 +115,25 @@ struct BarChartEnter {
     y: JSONDict,
     y2: JSONDict,
 }
+impl BarChartEnter {
+    pub fn default() -> BarChartEnter {
+        BarChartEnter {
+            x: JSONDict::create("scale", "xscale", "field", "category"),
+            width: JSONDict::band_create("scale", "xscale", "band", 1),
+            y: JSONDict::create("scale", "yscale", "field", "amount"),
+            y2: JSONDict::band_create("scale", "yscale", "value", 0),
+        }
+    }
+}
 
 struct BarChartFill {
     fill: JSONDict,
 }
 
-impl BarChartMark {
-    pub fn create_mark() -> BarChartMark {
-        BarChartMark {
-            mark_type: String::from("rect"),
-            from: KeyVal::new("data", "table"),
-            encode: 
+impl BarChartFill {
+    pub fn new(color: &str) -> BarChartFill {
+        BarChartFill {
+            fill: JSONDict::create("value", color, "fillOpacity", "0.5"),
         }
     }
 }
