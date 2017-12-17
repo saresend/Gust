@@ -125,6 +125,7 @@ impl Serialize for BarChartMark {
     }
 }
 
+#[derive(Serialize)]
 struct BarChartEncoding {
     enter: BarChartEnter,
     update: BarChartFill,
@@ -140,6 +141,7 @@ impl BarChartEncoding {
     }
 }
 
+#[derive(Serialize)]
 struct BarChartEnter {
     x: JSONDict,
     width: JSONDict,
@@ -157,6 +159,7 @@ impl BarChartEnter {
     }
 }
 
+#[derive(Serialize)]
 struct BarChartFill {
     fill: JSONDict,
 }
