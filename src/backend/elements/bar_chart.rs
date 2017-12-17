@@ -19,12 +19,12 @@ pub struct BarChartValue {
 pub struct BarChartScale {
     pub name: String,
     pub scale_type: String,
-    pub domain: BarChart4Tuple,
+    pub domain: BarChartDomain,
     pub range: String,
     pub padding: f64,
 }
 
-struct BarChart4Tuple {
+struct BarChartDomain {
     data: String,
     field: String,
 }
@@ -34,7 +34,7 @@ impl BarChartScale {
         BarChartScale {
             name: String::from("xscale"),
             scale_type: String::from("band"),
-            domain: BarChart4Tuple {
+            domain: BarChartDomain {
                 data: String::from("table"),
                 field: String::from("category"),
             },
@@ -47,7 +47,7 @@ impl BarChartScale {
         BarChartScale {
             name: String::from("yscale"),
             scale_type: String::from("linear"),
-            domain: BarChart4Tuple {
+            domain: BarChartDomain {
                 data: String::from("table"),
                 field: String::from("amount"),
             },
@@ -78,4 +78,44 @@ impl BarChartAxis {
     }
 }
 
-pub struct BarChartMark {}
+pub struct BarChartMark {
+    pub mark_type: String,
+    pub from: KeyVal,
+    encode: BarChartEncoding,
+}
+
+struct BarChartEncoding {
+    enter: BarChartEnter,
+    update: BarChartFill,
+    hover: BarChartFill,
+}
+impl BarChartEncoding {
+
+    pub fn create() -> BarChartEncoding {
+        BarChartEncoding {
+            enter: BarChartEnter::new(),
+        }
+    }
+
+}
+
+struct BarChartEnter {
+    x: JSONDict,
+    width: JSONDict,
+    y: JSONDict,
+    y2: JSONDict,
+}
+
+struct BarChartFill {
+    fill: JSONDict,
+}
+
+impl BarChartMark {
+    pub fn create_mark() -> BarChartMark {
+        BarChartMark {
+            mark_type: String::from("rect"),
+            from: KeyVal::new("data", "table"),
+            encode: 
+        }
+    }
+}
