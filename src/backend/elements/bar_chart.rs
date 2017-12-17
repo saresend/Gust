@@ -1,5 +1,6 @@
 
 
+use backend::elements::general::*;
 
 #[derive(Serialize)]
 pub struct BarChartData {
@@ -16,15 +17,15 @@ pub struct BarChartValue {
 
 
 pub struct BarChartScale {
-    pub name: String, 
-    pub scale_type: String, 
+    pub name: String,
+    pub scale_type: String,
     pub domain: BarChart4Tuple,
-    pub range: String, 
+    pub range: String,
     pub padding: f64,
 }
 
 struct BarChart4Tuple {
-    data: String, 
+    data: String,
     field: String,
 }
 
@@ -57,12 +58,24 @@ impl BarChartScale {
 }
 
 pub struct BarChartAxis {
+    orient: Orientation,
+    scale: String,
+}
 
-    pub fn create_xaxis() -> BarChartAxis {}
+impl BarChartAxis {
+    pub fn create_xaxis() -> BarChartAxis {
+        BarChartAxis {
+            orient: Orientation::Bottom,
+            scale: String::from("xscale"),
+        }
+    }
 
-    pub fn create_yaxis() -> BarChartAxis {}
-
-
+    pub fn create_yaxis() -> BarChartAxis {
+        BarChartAxis {
+            orient: Orientation::Left,
+            scale: String::from("yscale"),
+        }
+    }
 }
 
 pub struct BarChartMark {}
