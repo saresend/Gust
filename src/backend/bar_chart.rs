@@ -4,6 +4,9 @@
  */
 use backend::elements::bar_chart::*;
 
+use serde::ser::{Serialize, SerializeStruct, Serializer};
+
+
 pub struct BarChart {
     pub identifier: String,
     pub description: String,
@@ -35,5 +38,23 @@ impl BarChart {
             axes: vec![BarChartAxis::create_xaxis(), BarChartAxis::create_yaxis()],
             marks: vec![],
         }
+    }
+}
+
+impl Serialize for BarChart {
+    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+    where
+        S: Serializer,
+    {
+        let mut s = serializer.serialize_struct("graph", 10)?;
+        s.serialize_field("$schema", "https://vega.github.io/schema/vega/v3.0.json")?;
+        s.serialize_field("width", &self.width)?;
+        s.serialize_field("height", &self.height)?;
+        s.serialize_field("padding", &self.padding)?;
+        s.serialize_field("data", &self.data)?;
+        s.serialize_field("scales", &self.scales)?;
+        s.serialize_field("axes", &self.axes)?;
+        s.serialize_field("marks", &self.marks)?;
+        s.end()
     }
 }
