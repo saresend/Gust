@@ -1,6 +1,7 @@
 
 
 use backend::elements::general::*;
+use serde::ser::{Serialize, SerializeStruct, Serializer};
 
 #[derive(Serialize)]
 pub struct BarChartData {
@@ -24,6 +25,22 @@ pub struct BarChartScale {
     pub padding: f64,
 }
 
+impl Serialize for BarChartScale {
+    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+    where
+        S: Serializer,
+    {
+        let mut s = serializer.serialize_struct("scale", 10)?;
+        s.serialize_field("name", &self.name)?;
+        s.serialize_field("type", &self.scale_type)?;
+        s.serialize_field("domain", &self.domain)?;
+        s.serialize_field("range", &self.range)?;
+        s.serialize_field("padding", &self.padding)?;
+        s.end()
+    }
+}
+
+#[derive(Serialize)]
 struct BarChartDomain {
     data: String,
     field: String,
