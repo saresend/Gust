@@ -25,27 +25,6 @@ pub struct BarChartScale {
     pub padding: f64,
 }
 
-impl Serialize for BarChartScale {
-    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-    where
-        S: Serializer,
-    {
-        let mut s = serializer.serialize_struct("scale", 10)?;
-        s.serialize_field("name", &self.name)?;
-        s.serialize_field("type", &self.scale_type)?;
-        s.serialize_field("domain", &self.domain)?;
-        s.serialize_field("range", &self.range)?;
-        s.serialize_field("padding", &self.padding)?;
-        s.end()
-    }
-}
-
-#[derive(Serialize)]
-struct BarChartDomain {
-    data: String,
-    field: String,
-}
-
 impl BarChartScale {
     pub fn create_xscale() -> BarChartScale {
         BarChartScale {
@@ -74,6 +53,28 @@ impl BarChartScale {
     }
 }
 
+impl Serialize for BarChartScale {
+    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+    where
+        S: Serializer,
+    {
+        let mut s = serializer.serialize_struct("scale", 10)?;
+        s.serialize_field("name", &self.name)?;
+        s.serialize_field("type", &self.scale_type)?;
+        s.serialize_field("domain", &self.domain)?;
+        s.serialize_field("range", &self.range)?;
+        s.serialize_field("padding", &self.padding)?;
+        s.end()
+    }
+}
+
+#[derive(Serialize)]
+struct BarChartDomain {
+    data: String,
+    field: String,
+}
+
+#[derive(Serialize)]
 pub struct BarChartAxis {
     orient: Orientation,
     scale: String,
@@ -108,6 +109,19 @@ impl BarChartMark {
             from: KeyVal::new("data", "table"),
             encode: BarChartEncoding::create(),
         }
+    }
+}
+
+impl Serialize for BarChartMark {
+    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+    where
+        S: Serializer,
+    {
+        let mut s = serializer.serialize_struct("mark", 10)?;
+        s.serialize_field("type", &self.mark_type)?;
+        s.serialize_field("from", &self.from)?;
+        s.serialize_field("encode", &self.encode)?;
+        s.end()
     }
 }
 

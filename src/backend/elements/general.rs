@@ -2,6 +2,7 @@
 use std::collections::HashMap;
 
 #[derive(Serialize)]
+#[serde(rename_all="lowercase")]
 pub enum Orientation {
     Top,
     Left,
