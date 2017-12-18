@@ -2,6 +2,7 @@
 
 
 use backend::elements::general::*;
+use serde::ser::{Serialize, SerializeStruct, Serializer};
 
 #[derive(Serialize)]
 pub struct LineChartSignal {
@@ -100,6 +101,19 @@ impl LineChartScale {
         }
     }
 }
+impl Serialize for LineChartScale {
+    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+    where
+        S: Serializer,
+    {
+        let mut s = serializer.serialize_struct("scale", 4)?;
+        s.serialize_field("name", &self.name)?;
+        s.serialize_field("type", &self.scale_type)?;
+        s.serialize_field("range", &self.range)?;
+        s.serialize_field("domain", &self.domain)?;
+        s.end()
+    }
+}
 
 #[derive(Serialize)]
 pub struct LineChartAxis {
@@ -137,6 +151,18 @@ impl LineChartMark {
         }
     }
 }
+impl Serialize for LineChartMark {
+    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+    where
+        S: Serializer,
+    {
+        let mut s = serializer.serialize_struct("mark", 3)?;
+        s.serialize_field("type", &self.mark_type)?;
+        s.serialize_field("from", &self.from)?;
+        s.serialize_field("marks", &self.marks)?;
+        s.end()
+    }
+}
 pub struct LineChartMarkDescription {
     pub mark_type: String,
     pub from: KeyVal,
@@ -151,6 +177,20 @@ impl LineChartMarkDescription {
         }
     }
 }
+impl Serialize for LineChartMarkDescription {
+    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+    where
+        S: Serializer,
+    {
+        let mut s = serializer.serialize_struct("mark", 3)?;
+        s.serialize_field("type", &self.mark_type)?;
+        s.serialize_field("from", &self.from)?;
+        s.serialize_field("encode", &self.encode)?;
+        s.end()
+    }
+}
+
+#[derive(Serialize)]
 pub struct LineChartEncoding {
     pub enter: LineChartEnter,
     pub update: LineChartUpdate,
@@ -166,6 +206,7 @@ impl LineChartEncoding {
     }
 }
 
+#[derive(Serialize)]
 #[allow(non_snake_case)]
 pub struct LineChartEnter {
     pub x: JSONDict,
@@ -183,6 +224,7 @@ impl LineChartEnter {
         }
     }
 }
+#[derive(Serialize)]
 #[allow(non_snake_case)]
 pub struct LineChartUpdate {
     pub interpolate: KeyVal,
@@ -196,6 +238,8 @@ impl LineChartUpdate {
         }
     }
 }
+
+#[derive(Serialize)]
 #[allow(non_snake_case)]
 pub struct LineChartHover {
     pub fillOpacity: QualKeyVal,
@@ -208,6 +252,7 @@ impl LineChartHover {
     }
 }
 
+#[derive(Serialize)]
 pub struct LineChartFacet {
     pub facet: LineChartDescriptor,
 }
@@ -218,6 +263,8 @@ impl LineChartFacet {
         }
     }
 }
+
+#[derive(Serialize)]
 pub struct LineChartDescriptor {
     pub name: String,
     pub data: String,

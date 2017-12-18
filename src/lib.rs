@@ -18,6 +18,7 @@ mod tests {
 
     use super::backend::bar_chart::BarChart;
     use super::backend::stacked_bar_chart::StackedBarChart;
+    use super::backend::line_chart::LineChart;
     use super::backend::traits::*;
     #[test]
     fn test_bar_chart() {
@@ -36,5 +37,14 @@ mod tests {
             b.add_data(i, i + i, 0);
         }
         b.save_to_file().unwrap();
+    }
+    #[test]
+    fn test_line_chart() {
+        let mut c = LineChart::new();
+        for i in 0..20 {
+            c.add_data(i, i * i, 0);
+            c.add_data(i, 2 * i, 1);
+        }
+        c.save_to_file().unwrap();
     }
 }
