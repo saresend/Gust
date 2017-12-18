@@ -2,7 +2,7 @@
 A charting library for rust!
 
 [![Build Status](https://travis-ci.org/saresend/Gust.svg?branch=master)](https://travis-ci.org/saresend/Gust.svg?branch=master)
-![Crates](https://img.shields.io/crates/d/gust.svg)
+
 
 **Disclaimer**
 This is still very much a work in progress! APIs are very unstable and subject to change. Contributions and suggestions are welcomed and greatly appreciated! 
@@ -14,7 +14,7 @@ This is still very much a work in progress! APIs are very unstable and subject t
 
 ## What is Gust ##
 
-Gust, is both a charting crate to make it really easy to build simple interactive data visualizations in rust. It was built using the [Vega](http://vega.github.io/) specification, and so as a result it is also an implementation of an entire class structure for a certain subset of the Vega spec, that will (hopefully) become more complete over time.
+Gust, is small a charting crate to make it really easy to build simple interactive data visualizations in rust. It also serves as a partial [Vega](http://vega.github.io/) implementation that will (hopefully) become more complete over time.
 
 ---
 
@@ -36,10 +36,9 @@ More will be coming soon! If you're interested in contributing your own, just re
 ## [Why did you do this in rust?](https://transitiontech.ca/random/RIIR) ## 
 
 ## Installation ## 
----
 ` gust = "0.1.1" `
 
----
+
 
 ## Samples and Sample Usage ## 
 
@@ -72,4 +71,8 @@ let mut b = StackedBarChart::new();
 
 
 ## Additional Docs ## 
-https://docs.rs/gust/0.1.0/gust/
+https://docs.rs/gust/0.1.1/gust/
+
+
+## Special Mentions ## 
+The rendering is all handled by Vega: https://vega.github.io/
