@@ -42,6 +42,11 @@ impl BarChart {
             marks: vec![BarChartMark::create_mark()],
         }
     }
+    pub fn add_data(&mut self, category: String, amount: i32) {
+        self.data[0]
+            .values
+            .push(BarChartValue::new(category, amount));
+    }
 }
 
 impl Serialize for BarChart {

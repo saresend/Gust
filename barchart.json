@@ -6,7 +6,48 @@
     "data": [
         {
             "name": "table",
-            "values": []
+            "values": [
+                {
+                    "category": "A",
+                    "amount": 0
+                },
+                {
+                    "category": "B",
+                    "amount": 1
+                },
+                {
+                    "category": "C",
+                    "amount": 8
+                },
+                {
+                    "category": "D",
+                    "amount": 27
+                },
+                {
+                    "category": "E",
+                    "amount": 64
+                },
+                {
+                    "category": "F",
+                    "amount": 125
+                },
+                {
+                    "category": "G",
+                    "amount": 216
+                },
+                {
+                    "category": "H",
+                    "amount": 343
+                },
+                {
+                    "category": "I",
+                    "amount": 512
+                },
+                {
+                    "category": "J",
+                    "amount": 729
+                }
+            ]
         }
     ],
     "scales": [
@@ -50,16 +91,16 @@
             "encode": {
                 "enter": {
                     "x": {
-                        "scale": "xscale",
-                        "field": "category"
+                        "field": "category",
+                        "scale": "xscale"
                     },
                     "width": {
                         "scale": "xscale",
                         "band": 1
                     },
                     "y": {
-                        "scale": "yscale",
-                        "field": "amount"
+                        "field": "amount",
+                        "scale": "yscale"
                     },
                     "y2": {
                         "scale": "yscale",

@@ -20,7 +20,11 @@ mod tests {
     use super::backend::traits::*;
     #[test]
     fn test_bar_chart() {
-        let b = BarChart::new();
+        let mut b = BarChart::new();
+        let v = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"];
+        for i in 0..10 {
+            b.add_data(v[i].to_string(), (i * i * i) as i32);
+        }
         b.save_to_file().unwrap();
     }
 }

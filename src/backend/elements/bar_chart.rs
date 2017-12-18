@@ -24,6 +24,11 @@ pub struct BarChartValue {
     category: String,
     amount: i32,
 }
+impl BarChartValue {
+    pub fn new(category: String, amount: i32) -> BarChartValue {
+        BarChartValue { category, amount }
+    }
+}
 
 
 pub struct BarChartScale {
