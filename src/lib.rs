@@ -12,5 +12,15 @@ pub mod backend;
 pub mod frontend;
 
 
+
 #[cfg(test)]
-mod tests {}
+mod tests {
+
+    use super::backend::bar_chart::BarChart;
+    use super::backend::traits::*;
+    #[test]
+    fn test_bar_chart() {
+        let b = BarChart::new();
+        b.save_to_file().unwrap();
+    }
+}

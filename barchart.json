@@ -1,0 +1,84 @@
+{
+    "$schema": "https://vega.github.io/schema/vega/v3.0.json",
+    "width": 500,
+    "height": 300,
+    "padding": 5,
+    "data": [
+        {
+            "name": "table",
+            "values": []
+        }
+    ],
+    "scales": [
+        {
+            "name": "xscale",
+            "type": "band",
+            "domain": {
+                "data": "table",
+                "field": "category"
+            },
+            "range": "width",
+            "padding": 0.05
+        },
+        {
+            "name": "yscale",
+            "type": "linear",
+            "domain": {
+                "data": "table",
+                "field": "amount"
+            },
+            "range": "height",
+            "padding": 0.05
+        }
+    ],
+    "axes": [
+        {
+            "orient": "bottom",
+            "scale": "xscale"
+        },
+        {
+            "orient": "left",
+            "scale": "yscale"
+        }
+    ],
+    "marks": [
+        {
+            "type": "rect",
+            "from": {
+                "data": "table"
+            },
+            "encode": {
+                "enter": {
+                    "x": {
+                        "scale": "xscale",
+                        "field": "category"
+                    },
+                    "width": {
+                        "scale": "xscale",
+                        "band": 1
+                    },
+                    "y": {
+                        "scale": "yscale",
+                        "field": "amount"
+                    },
+                    "y2": {
+                        "scale": "yscale",
+                        "value": 0
+                    }
+                },
+                "update": {
+                    "fill": {
+                        "fillOpacity": "0.5",
+                        "value": "steelblue"
+                    }
+                },
+                "hover": {
+                    "fill": {
+                        "fillOpacity": "0.5",
+                        "value": "red"
+                    }
+                }
+            }
+        }
+    ]
+}

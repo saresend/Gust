@@ -9,6 +9,15 @@ pub struct BarChartData {
     pub values: Vec<BarChartValue>,
 }
 
+impl BarChartData {
+    pub fn new() -> BarChartData {
+        BarChartData {
+            name: String::from("table"),
+            values: vec![],
+        }
+    }
+}
+
 
 #[derive(Serialize)]
 pub struct BarChartValue {

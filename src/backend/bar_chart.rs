@@ -33,13 +33,13 @@ impl BarChart {
             height: 300,
             padding: 5,
 
-            data: vec![],
+            data: vec![BarChartData::new()],
             scales: vec![
                 BarChartScale::create_xscale(),
                 BarChartScale::create_yscale(),
             ],
             axes: vec![BarChartAxis::create_xaxis(), BarChartAxis::create_yaxis()],
-            marks: vec![],
+            marks: vec![BarChartMark::create_mark()],
         }
     }
 }
@@ -64,7 +64,7 @@ impl Serialize for BarChart {
 
 impl Graphable for BarChart {
     fn save_to_file(&self) -> io::Result<()> {
-        let mut f = std::fs::File::create(&self.identifier)?;
+        let mut f = std::fs::File::create(format!("{}.json", &self.identifier))?;
         f.write_all(serde_json::to_string(self)?.as_bytes())?;
         Ok(())
     }
