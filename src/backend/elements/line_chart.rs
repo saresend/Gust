@@ -101,6 +101,49 @@ impl LineChartScale {
     }
 }
 
-pub struct LineChartAxis {}
+#[derive(Serialize)]
+pub struct LineChartAxis {
+    scale: String,
+    orient: Orientation,
+}
 
-pub struct LineChartMark {}
+impl LineChartAxis {
+    pub fn new_xaxis() -> LineChartAxis {
+        LineChartAxis {
+            scale: String::from("x"),
+            orient: Orientation::Bottom,
+        }
+    }
+
+    pub fn new_yaxis() -> LineChartAxis {
+        LineChartAxis {
+            scale: String::from("y"),
+            orient: Orientation::Left,
+        }
+    }
+}
+
+pub struct LineChartMark {
+    pub mark_type: String,
+    pub from: LineChartFacet,
+    pub marks: Vec<LineChartMarkDescription>,
+}
+pub struct LineChartMarkDescription {
+    pub mark_type: String,
+    pub from: KeyVal,
+    pub encode: LineChartEncoding,
+}
+pub struct LineChartEncoding {
+    enter: LineChartEnter,
+    update:
+    hover:
+}
+
+pub struct LineChartFacet {
+    pub facet: LineChartDescriptor,
+}
+pub struct LineChartDescriptor {
+    pub name: String,
+    pub data: String,
+    pub groupby: String,
+}

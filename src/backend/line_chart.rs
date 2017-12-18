@@ -21,14 +21,14 @@ impl LineChart {
             width: 500,
             height: 300,
             padding: 5,
-            signals: vec![],
-            data: vec![],
+            signals: vec![LineChartSignal::new()],
+            data: vec![LineChartData::new()],
             scales: vec![
                 LineChartScale::new_xscale(),
                 LineChartScale::new_yscale(),
                 LineChartScale::new_ordinal_scale(),
             ],
-            axes: vec![],
+            axes: vec![LineChartAxis::new_xaxis(), LineChartAxis::new_yaxis()],
             marks: vec![],
         }
     }
