@@ -39,7 +39,7 @@ impl StackedBarTransform {
         StackedBarTransform {
             transform_type: String::from("stack"),
             group_by: vec![String::from("x")],
-            sort: KeyVal::new("field", "c"),
+            sort: KeyVal::new("field", "z"),
             field: String::from("y"),
         }
     }
@@ -81,9 +81,87 @@ impl StackedBarScale {
             domain: JSONDict::create("data", "table", "field", "y1"),
         }
     }
-    pub fn new_ordinal_scale() -> StackedBarScale {}
+    pub fn new_ordinal_scale() -> StackedBarScale {
+        StackedBarScale {
+            name: String::from("color"),
+            scale_type: String::from("ordinal"),
+            range: String::from("category"),
+            domain: JSONDict::create("data", "table", "field", "z"),
+        }
+    }
 }
 
-pub struct StackedBarAxis {}
+#[derive(Serialize)]
+pub struct StackedBarAxis {
+    orient: Orientation,
+    scale: String,
+}
 
-pub struct StackedBarMark {}
+impl StackedBarAxis {
+    pub fn new_xaxis() -> StackedBarAxis {
+        StackedBarAxis {
+            orient: Orientation::Bottom,
+            scale: String::from("x"),
+        }
+    }
+    pub fn new_yaxis() -> StackedBarAxis {
+        StackedBarAxis {
+            orient: Orientation::Left,
+            scale: String::from("y"),
+        }
+    }
+}
+
+pub struct StackedBarMark {
+    mark_type: String,
+    from: KeyVal,
+    encode: StackedBarEncoding,
+    update: StackedBarFill,
+    hover: StackedBarFill,
+}
+impl StackedBarMark {
+    pub fn new() -> StackedBarMark {
+        StackedBarMark {
+            mark_type: String::from("rect"),
+            from: KeyVal::new("data", "table"),
+            encode: StackedBarEncoding::new(),
+            update: StackedBarFill::new(1),
+            hover: StackedBarFill::new(0.5),
+        }
+    }
+}
+
+
+struct StackedBarEncoding {
+    x: JSONDict,
+    width: JSONDict,
+    y: JSONDict,
+    y2: JSONDict,
+    fill: JSONDict,
+}
+
+impl StackedBarEncoding {
+    pub fn new() -> StackedBarEncoding {
+        StackedBarEncoding {
+            x: JSONDict::create("scale", "x", "field", "x"),
+            width: JSONDict::band_create("scale", "x", "band", 1),
+            y: JSONDict::create("scale", "y", "field", "y0"),
+            y2: JSONDict::create("scale", "y", "field", "y1"),
+            fill: JSONDict::create("scale", "color", "field", "z"),
+        }
+    }
+}
+
+
+
+#[derive(Serialize)]
+struct StackedBarFill {
+    fillOpacity: QualKeyVal,
+}
+impl StackedBarFill {
+    pub fn new(val: f32) -> StackedBarFill {
+        StackedBarFill {
+            fillOpacity: QualKeyVal::new("value", val),
+        }
+    }
+}

@@ -35,6 +35,27 @@ impl Serialize for KeyVal {
     }
 }
 
+pub struct QualKeyVal {
+    pub key: &'static str,
+    pub val: f32,
+}
+
+impl QualKeyVal {
+    pub fn new(key: &'static str, val: f32) -> QualKeyVal {
+        QualKeyVal { key, val}
+    }
+}
+impl Serialize for QualKeyVal {
+     fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+    where
+        S: Serializer,
+    {
+        let mut s = serializer.serialize_struct("qualkey", 1)?;
+        s.serialize_field(self.key, &self.val)?;
+        s.end()
+    }
+}
+
 pub struct JSONDict {
     str_vals: HashMap<&'static str, String>,
     i32_vals: HashMap<&'static str, i32>,
