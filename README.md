@@ -35,8 +35,15 @@ More will be coming soon! If you're interested in contributing your own, just re
 
 ## [Why did you do this in rust?](https://transitiontech.ca/random/RIIR) ## 
 
+## Installation ## 
+---
+` gust = "0.1.1" `
+
+---
 
 ## Samples and Sample Usage ## 
+
+---
 
 ### Sample Bar Chart ###
 ```rust

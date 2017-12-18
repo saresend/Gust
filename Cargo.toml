@@ -5,7 +5,7 @@ authors = ["Samuel Resendez <saresend@usc.edu>"]
 description = """ A small charting library for generating d3 and html charts using Rust """
 license = "Unlicense/MIT"
 homepage = "https://github.com/saresend/Gust"
-categories = ["graphing", "data visualization", "d3"]
+categories = ["visualization"]
 
 
 [dependencies]
