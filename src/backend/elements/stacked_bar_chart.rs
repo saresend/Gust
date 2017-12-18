@@ -90,7 +90,19 @@ impl StackedBarScale {
         }
     }
 }
-
+impl Serialize for StackedBarScale {
+    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+    where
+        S: Serializer,
+    {
+        let mut s = serializer.serialize_struct("scale", 10)?;
+        s.serialize_field("name", &self.name)?;
+        s.serialize_field("type", &self.scale_type)?;
+        s.serialize_field("range", &self.range)?;
+        s.serialize_field("domain", &self.domain)?;
+        s.end()
+    }
+}
 #[derive(Serialize)]
 pub struct StackedBarAxis {
     orient: Orientation,
@@ -125,13 +137,27 @@ impl StackedBarMark {
             mark_type: String::from("rect"),
             from: KeyVal::new("data", "table"),
             encode: StackedBarEncoding::new(),
-            update: StackedBarFill::new(1),
+            update: StackedBarFill::new(1.0),
             hover: StackedBarFill::new(0.5),
         }
     }
 }
+impl Serialize for StackedBarMark {
+    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+    where
+        S: Serializer,
+    {
+        let mut s = serializer.serialize_struct("mark", 4)?;
+        s.serialize_field("type", &self.mark_type)?;
+        s.serialize_field("from", &self.from)?;
+        s.serialize_field("encode", &self.encode)?;
+        s.serialize_field("update", &self.update)?;
+        s.serialize_field("hover", &self.hover)?;
+        s.end()
+    }
+}
 
-
+#[derive(Serialize)]
 struct StackedBarEncoding {
     x: JSONDict,
     width: JSONDict,
@@ -155,6 +181,7 @@ impl StackedBarEncoding {
 
 
 #[derive(Serialize)]
+#[allow(non_snake_case)]
 struct StackedBarFill {
     fillOpacity: QualKeyVal,
 }
