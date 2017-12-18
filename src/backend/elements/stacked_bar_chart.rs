@@ -6,6 +6,7 @@ use serde::ser::{Serialize, SerializeStruct, Serializer};
 #[derive(Serialize)]
 pub struct StackedBarData {
     name: String,
+    pub transform: Vec<StackedBarTransform>,
     values: Vec<StackedBarDataValue>,
 }
 
@@ -20,6 +21,7 @@ impl StackedBarData {
     pub fn new() -> StackedBarData {
         StackedBarData {
             name: String::from("table"),
+            transform: vec![StackedBarTransform::new()],
             values: vec![],
         }
     }
@@ -128,8 +130,6 @@ pub struct StackedBarMark {
     mark_type: String,
     from: KeyVal,
     encode: StackedBarEncoding,
-    update: StackedBarFill,
-    hover: StackedBarFill,
 }
 impl StackedBarMark {
     pub fn new() -> StackedBarMark {
@@ -137,8 +137,6 @@ impl StackedBarMark {
             mark_type: String::from("rect"),
             from: KeyVal::new("data", "table"),
             encode: StackedBarEncoding::new(),
-            update: StackedBarFill::new(1.0),
-            hover: StackedBarFill::new(0.5),
         }
     }
 }
@@ -151,14 +149,29 @@ impl Serialize for StackedBarMark {
         s.serialize_field("type", &self.mark_type)?;
         s.serialize_field("from", &self.from)?;
         s.serialize_field("encode", &self.encode)?;
-        s.serialize_field("update", &self.update)?;
-        s.serialize_field("hover", &self.hover)?;
+
         s.end()
     }
 }
 
 #[derive(Serialize)]
 struct StackedBarEncoding {
+    enter: StackedBarEnter,
+    update: StackedBarFill,
+    hover: StackedBarFill,
+}
+impl StackedBarEncoding {
+    pub fn new() -> StackedBarEncoding {
+        StackedBarEncoding {
+            enter: StackedBarEnter::new(),
+            update: StackedBarFill::new(1.0),
+            hover: StackedBarFill::new(0.5),
+        }
+    }
+}
+
+#[derive(Serialize)]
+struct StackedBarEnter {
     x: JSONDict,
     width: JSONDict,
     y: JSONDict,
@@ -166,9 +179,9 @@ struct StackedBarEncoding {
     fill: JSONDict,
 }
 
-impl StackedBarEncoding {
-    pub fn new() -> StackedBarEncoding {
-        StackedBarEncoding {
+impl StackedBarEnter {
+    pub fn new() -> StackedBarEnter {
+        StackedBarEnter {
             x: JSONDict::create("scale", "x", "field", "x"),
             width: JSONDict::band_create("scale", "x", "band", 1),
             y: JSONDict::create("scale", "y", "field", "y0"),
