@@ -5,7 +5,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
 name = "gust"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "serde 1.0.24 (registry+https://github.com/rust-lang/crates.io-index)",
  "serde_derive 1.0.24 (registry+https://github.com/rust-lang/crates.io-index)",

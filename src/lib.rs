@@ -32,7 +32,7 @@ mod tests {
     #[test]
     fn test_stacked_bar_chart() {
         let mut b = StackedBarChart::new();
-        for i in 0..50 {
+        for i in 0..10 {
             b.add_data(i, i * i, 1);
             b.add_data(i, i + i, 0);
         }
