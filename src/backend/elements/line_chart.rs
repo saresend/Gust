@@ -134,9 +134,22 @@ pub struct LineChartMarkDescription {
     pub encode: LineChartEncoding,
 }
 pub struct LineChartEncoding {
-    enter: LineChartEnter,
-    update:
-    hover:
+    pub enter: LineChartEnter,
+    pub update: LineChartUpdate,
+    pub hover: LineChartHover,
+}
+pub struct LineChartEnter {
+    pub x: JSONDict,
+    pub y: JSONDict,
+    pub stroke: JSONDict,
+    pub strokeWidth: JSONDict,
+}
+pub struct LineChartUpdate {
+    pub interpolate: KeyVal,
+    pub fillOpacity: QualKeyVal,
+}
+pub struct LineChartHover {
+    pub fillOpacity: QualKeyVal,
 }
 
 pub struct LineChartFacet {
