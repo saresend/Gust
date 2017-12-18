@@ -3,9 +3,12 @@
  *  Author: Samuel Resendez
  */
 use backend::elements::bar_chart::*;
-
+use backend::traits::Graphable;
+use serde_json;
 use serde::ser::{Serialize, SerializeStruct, Serializer};
-
+use std::io;
+use std::io::Write;
+use std;
 
 pub struct BarChart {
     pub identifier: String,
@@ -56,5 +59,13 @@ impl Serialize for BarChart {
         s.serialize_field("axes", &self.axes)?;
         s.serialize_field("marks", &self.marks)?;
         s.end()
+    }
+}
+
+impl Graphable for BarChart {
+    fn save_to_file(&self) -> io::Result<()> {
+        let mut f = std::fs::File::create(&self.identifier)?;
+        f.write_all(serde_json::to_string(self)?.as_bytes())?;
+        Ok(())
     }
 }
