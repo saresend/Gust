@@ -128,35 +128,107 @@ pub struct LineChartMark {
     pub from: LineChartFacet,
     pub marks: Vec<LineChartMarkDescription>,
 }
+impl LineChartMark {
+    pub fn new() -> LineChartMark {
+        LineChartMark {
+            mark_type: String::from("group"),
+            from: LineChartFacet::new(),
+            marks: vec![LineChartMarkDescription::new()],
+        }
+    }
+}
 pub struct LineChartMarkDescription {
     pub mark_type: String,
     pub from: KeyVal,
     pub encode: LineChartEncoding,
+}
+impl LineChartMarkDescription {
+    pub fn new() -> LineChartMarkDescription {
+        LineChartMarkDescription {
+            mark_type: String::from("line"),
+            from: KeyVal::new("data", "series"),
+            encode: LineChartEncoding::new(),
+        }
+    }
 }
 pub struct LineChartEncoding {
     pub enter: LineChartEnter,
     pub update: LineChartUpdate,
     pub hover: LineChartHover,
 }
+impl LineChartEncoding {
+    pub fn new() -> LineChartEncoding {
+        LineChartEncoding {
+            enter: LineChartEnter::new(),
+            update: LineChartUpdate::new(),
+            hover: LineChartHover::new(),
+        }
+    }
+}
+
+#[allow(non_snake_case)]
 pub struct LineChartEnter {
     pub x: JSONDict,
     pub y: JSONDict,
     pub stroke: JSONDict,
-    pub strokeWidth: JSONDict,
+    pub strokeWidth: QualKeyVal,
 }
+impl LineChartEnter {
+    pub fn new() -> LineChartEnter {
+        LineChartEnter {
+            x: JSONDict::create("scale", "x", "field", "x"),
+            y: JSONDict::create("scale", "y", "field", "y"),
+            stroke: JSONDict::create("scale", "color", "field", "z"),
+            strokeWidth: QualKeyVal::new("value", 2.0),
+        }
+    }
+}
+#[allow(non_snake_case)]
 pub struct LineChartUpdate {
     pub interpolate: KeyVal,
     pub fillOpacity: QualKeyVal,
 }
+impl LineChartUpdate {
+    pub fn new() -> LineChartUpdate {
+        LineChartUpdate {
+            interpolate: KeyVal::new("signal", "interpolate"),
+            fillOpacity: QualKeyVal::new("value", 1.0),
+        }
+    }
+}
+#[allow(non_snake_case)]
 pub struct LineChartHover {
     pub fillOpacity: QualKeyVal,
+}
+impl LineChartHover {
+    pub fn new() -> LineChartHover {
+        LineChartHover {
+            fillOpacity: QualKeyVal::new("value", 0.5),
+        }
+    }
 }
 
 pub struct LineChartFacet {
     pub facet: LineChartDescriptor,
 }
+impl LineChartFacet {
+    pub fn new() -> LineChartFacet {
+        LineChartFacet {
+            facet: LineChartDescriptor::new(),
+        }
+    }
+}
 pub struct LineChartDescriptor {
     pub name: String,
     pub data: String,
     pub groupby: String,
+}
+impl LineChartDescriptor {
+    pub fn new() -> LineChartDescriptor {
+        LineChartDescriptor {
+            name: String::from("series"),
+            data: String::from("table"),
+            groupby: String::from("z"),
+        }
+    }
 }
