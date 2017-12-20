@@ -56,7 +56,7 @@ More will be coming soon! If you're interested in contributing your own, just re
         }
         render_graph(&b, FileType::HTML).unwrap();
 ```
-### Result: **bar_chart.html** ###
+### Result: **gust_build/html/bar_chart.html** ###
 ![bar chart](./assets/bar_chart.png)
 
 ### Stacked Bar Chart example ### 
@@ -70,7 +70,7 @@ let mut b = StackedBarChart::new();
         }
         render_graph(&b, FileType::HTML).unwrap();
 ```
-### Result: ### 
+### Result: **gust_build/html/stacked_bar_chart.html** ### 
 ![stacked bar chart](./assets/stacked_bar.png)
 
 
