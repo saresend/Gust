@@ -10,6 +10,8 @@ use serde_json;
 use std::io;
 use std::io::Write;
 use serde::ser::{Serialize, SerializeStruct, Serializer};
+use backend::general::FileType;
+use frontend::write::render_graph;
 
 pub struct StackedBarChart {
     pub identifier: String,
@@ -67,9 +69,16 @@ impl Serialize for StackedBarChart {
 }
 
 impl Graphable for StackedBarChart {
-    fn save_to_file(&self) -> io::Result<()> {
-        let mut f = std::fs::File::create(format!("{}.json", &self.identifier))?;
-        f.write_all(serde_json::to_string(self)?.as_bytes())?;
-        Ok(())
+    fn save_to_file(&self, file_type: FileType) -> io::Result<()> {
+        match file_type {
+            JSON => {
+                let mut f = std::fs::File::create(format!("{}.json", &self.identifier))?;
+                f.write_all(serde_json::to_string(self)?.as_bytes())?;
+                Ok(())
+            }
+            HTML => {
+                let mut f = std::fs::File::create(format!("{}.html", &self.identifier))?;
+            }
+        }
     }
 }

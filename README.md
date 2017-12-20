@@ -14,7 +14,7 @@ This is still very much a work in progress! APIs are very unstable and subject t
 
 ## What is Gust ##
 
-Gust, is small a charting crate to make it really easy to build simple interactive data visualizations in rust. It also serves as a partial [Vega](http://vega.github.io/) implementation that will (hopefully) become more complete over time.
+Gust is small a charting crate to make it really easy to build simple interactive data visualizations in rust. It also serves as a partial [Vega](http://vega.github.io/) implementation that will (hopefully) become more complete over time.
 
 ---
 
@@ -23,7 +23,7 @@ Gust allows you to render the actual visualizations themselves using D3.js, (mea
 
 ### Currently Implementations ### 
 
-Currently, Gust supports only 3 of the various charts that possible:
+Currently, Gust supports only 3 charts so far:
 
 1. Bar Charts
 2. Stacked Bar Charts
@@ -42,8 +42,6 @@ More will be coming soon! If you're interested in contributing your own, just re
 
 ## Samples and Sample Usage ## 
 
----
-
 ### Sample Bar Chart ###
 ```rust
      let mut b = BarChart::new();
@@ -56,7 +54,7 @@ More will be coming soon! If you're interested in contributing your own, just re
 ### Result: **bar_chart.html** ###
 ![bar chart](./assets/bar_chart.png)
 
-### Another Quick example ### 
+### Stacked Bar Chart example ### 
 ```rust
 let mut b = StackedBarChart::new();
         for i in 0..10 {

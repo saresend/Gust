@@ -4,6 +4,7 @@
 
 
 use std::path::Path;
+use backend::traits::Graphable;
 use std::fs::File;
 use std::io::Write;
 
@@ -29,12 +30,8 @@ const SPART: &'static str = "')
   <div id=\"view\"></div>
 </body>";
 
-pub fn render_graph(id: &str, json_path: &Path) {
-    let mut file = File::create(format!("grust_build/{}.html", id)).unwrap();
-    let html_text = format!("{}{}{}", FPART, json_path.to_str().unwrap(), SPART);
-    println!("{}", html_text);
-    let _ = file.write_all(html_text.as_bytes());
+pub fn render_graph(&graph: Graphable, file: File) {
+  let html_text = format!("{}{}{}", FPART, json_path.to_str().unwrap(), SPART);
+  println!("{}", html_text);
+  let _ = file.write_all(html_text.as_bytes());
 }
-
-
-
