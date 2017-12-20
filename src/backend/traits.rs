@@ -9,4 +9,5 @@ pub trait Graphable: Sized + Serialize {
     }
 
     fn get_description(&self) -> &str;
+    fn get_identifier(&self) -> &str;
 }

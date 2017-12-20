@@ -70,4 +70,7 @@ impl Graphable for StackedBarChart {
     fn get_description(&self) -> &str {
         &self.description
     }
+    fn get_identifier(&self) -> &str {
+        &self.identifier
+    }
 }

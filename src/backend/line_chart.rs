@@ -62,4 +62,7 @@ impl Graphable for LineChart {
     fn get_description(&self) -> &str {
         &self.description
     }
+    fn get_identifier(&self) -> &str {
+        &self.identifier
+    }
 }
