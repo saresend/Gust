@@ -4,16 +4,16 @@ use serde::ser::{Serialize, SerializeStruct, Serializer};
 use backend::traits::Graphable;
 
 pub struct LineChart {
-    pub identifier: String,
-    pub description: String,
-    pub width: u32,
-    pub height: u32,
-    pub padding: u32,
-    pub signals: Vec<LineChartSignal>,
-    pub data: Vec<LineChartData>,
-    pub scales: Vec<LineChartScale>,
-    pub axes: Vec<LineChartAxis>,
-    pub marks: Vec<LineChartMark>,
+    identifier: String,
+    description: String,
+    width: u32,
+    height: u32,
+    padding: u32,
+    signals: Vec<LineChartSignal>,
+    data: Vec<LineChartData>,
+    scales: Vec<LineChartScale>,
+    axes: Vec<LineChartAxis>,
+    marks: Vec<LineChartMark>,
 }
 
 impl LineChart {
@@ -35,6 +35,13 @@ impl LineChart {
             marks: vec![LineChartMark::new()],
         }
     }
+    /// To add data to a line chart, the data must be formatted in the following fashion:
+    /// {Integer, Integer, Integer }.
+    ///
+    /// The first two entries represent the x and y coordinates of the point
+    /// which you're adding to the graph, and the third coordinate is the series identifier.
+    /// For example, if you want to add 2 different lines on a single set of axes, then you can
+    /// set the z of the first series to 0, and set the z of the second series to 1.
     pub fn add_data(&mut self, x: i64, y: i64, z: i64) {
         self.data[0].add_data(x, y, z);
     }

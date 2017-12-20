@@ -8,17 +8,17 @@ use serde::ser::{Serialize, SerializeStruct, Serializer};
 
 
 pub struct BarChart {
-    pub identifier: String,
-    pub description: String,
-    pub width: i32,
-    pub height: i32,
-    pub padding: i32,
+    identifier: String,
+    description: String,
+    width: i32,
+    height: i32,
+    padding: i32,
 
-    pub data: Vec<BarChartData>,
-    pub scales: Vec<BarChartScale>,
-    pub axes: Vec<BarChartAxis>,
+    data: Vec<BarChartData>,
+    scales: Vec<BarChartScale>,
+    axes: Vec<BarChartAxis>,
 
-    pub marks: Vec<BarChartMark>,
+    marks: Vec<BarChartMark>,
 }
 
 impl BarChart {
@@ -39,10 +39,17 @@ impl BarChart {
             marks: vec![BarChartMark::create_mark()],
         }
     }
+    /// Bar Chart accept data in the following format:
+    /// { String, Integer }, which represent the category (aka Bar), as well as the value of that bar
+    /// (i.e. it's height). 
     pub fn add_data(&mut self, category: String, amount: i32) {
         self.data[0]
             .values
             .push(BarChartValue::new(category, amount));
+    }
+
+    pub fn set_description(&mut self, description: &str) {
+        self.description = String::from(description);
     }
 }
 
