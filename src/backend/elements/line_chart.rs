@@ -20,10 +20,14 @@ impl LineChartSignal {
     }
 }
 
+///A small json object which represents the selector for different interpolation options that are
+/// currently supported by Vega.
+/// They are:
+/// basis, cardinal, catmull-rom, linear, monotone, natural, step, step-after, and step-before
 #[derive(Serialize)]
 pub struct LineChartInterpolation {
-    pub input: String,
-    pub options: Vec<String>,
+    input: String,
+    options: Vec<String>,
 }
 impl LineChartInterpolation {
     pub fn new() -> LineChartInterpolation {
@@ -44,10 +48,12 @@ impl LineChartInterpolation {
     }
 }
 
+
+
 #[derive(Serialize)]
 pub struct LineChartData {
-    pub name: String,
-    pub values: Vec<LineChartDataValue>,
+    name: String,
+    values: Vec<LineChartDataValue>,
 }
 
 impl LineChartData {
@@ -70,10 +76,10 @@ pub struct LineChartDataValue {
 }
 
 pub struct LineChartScale {
-    pub name: String,
-    pub scale_type: String,
-    pub range: String,
-    pub domain: JSONDict,
+    name: String,
+    scale_type: String,
+    range: String,
+    domain: JSONDict,
 }
 impl LineChartScale {
     pub fn new_xscale() -> LineChartScale {

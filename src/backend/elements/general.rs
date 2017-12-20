@@ -2,6 +2,8 @@
 use std::collections::HashMap;
 use serde::ser::{Serialize, Serializer, SerializeStruct};
 
+
+/// Orientation is an enum for the different possible axis values
 #[derive(Serialize)]
 #[serde(rename_all = "lowercase")]
 pub enum Orientation {
@@ -11,6 +13,8 @@ pub enum Orientation {
     Right,
 }
 
+/// A small helper struct that represents a json object of the following type:
+/// { key:  val}, where both key and val are strings (&str, and String)
 pub struct KeyVal {
     pub key: &'static str,
     pub val: String,
@@ -35,6 +39,9 @@ impl Serialize for KeyVal {
     }
 }
 
+///
+/// QualKeyVal is very similar to KeyVal, except it stores a float32 instead of a string
+/// as it's value: {key, val} (&str, f32)
 pub struct QualKeyVal {
     pub key: &'static str,
     pub val: f32,
@@ -56,6 +63,17 @@ impl Serialize for QualKeyVal {
     }
 }
 
+///JSONDict is a helper structure which represents an arbitrary json dictionary of the following form:
+/// `
+/// { 
+///     foo: bar,
+///     baz: foobar,
+///     ... 
+///  }
+/// `
+/// It can hold an arbitrary quantity of these, and serializes appropriately. The helper functions provided 
+/// are mostly convenience functions for some of the common types of json dictionaries which show up in the Vega
+/// specification
 pub struct JSONDict {
     str_vals: HashMap<&'static str, String>,
     i32_vals: HashMap<&'static str, i32>,
