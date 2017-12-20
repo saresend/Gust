@@ -42,26 +42,33 @@ More will be coming soon! If you're interested in contributing your own, just re
 
 ## Samples and Sample Usage ## 
 
+```rust
+    use backend::bar_chart::BarChart;
+    use frontend::write::render_graph;
+```
+
 ### Sample Bar Chart ###
 ```rust
      let mut b = BarChart::new();
-        let v = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
+        let v = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"];
         for i in 0..10 {
             b.add_data(v[i].to_string(), (i * i * i) as i32);
         }
-        b.save_to_file().unwrap();
+        render_graph(&b, FileType::HTML).unwrap();
 ```
 ### Result: **bar_chart.html** ###
 ![bar chart](./assets/bar_chart.png)
 
 ### Stacked Bar Chart example ### 
 ```rust
+use backend::stacked_bar_chart::StackedBarChart;
+
 let mut b = StackedBarChart::new();
         for i in 0..10 {
             b.add_data(i, i * i, 1);
             b.add_data(i, i + i, 0);
         }
-        b.save_to_file().unwrap();
+        render_graph(&b, FileType::HTML).unwrap();
 ```
 ### Result: ### 
 ![stacked bar chart](./assets/stacked_bar.png)

@@ -184,7 +184,7 @@ impl StackedBarEnter {
     pub fn new() -> StackedBarEnter {
         StackedBarEnter {
             x: JSONDict::create("scale", "x", "field", "x"),
-            width: JSONDict::band_create("scale", "x", "band", 1),
+            width: JSONDict::tri_create("scale", "x", "band", 1, "offset", -1),
             y: JSONDict::create("scale", "y", "field", "y0"),
             y2: JSONDict::create("scale", "y", "field", "y1"),
             fill: JSONDict::create("scale", "color", "field", "z"),
@@ -201,8 +201,6 @@ struct StackedBarFill {
 }
 impl StackedBarFill {
     pub fn new(val: f32) -> StackedBarFill {
-        StackedBarFill {
-            fillOpacity: QualKeyVal::new("value", val),
-        }
+        StackedBarFill { fillOpacity: QualKeyVal::new("value", val) }
     }
 }

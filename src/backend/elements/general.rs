@@ -3,7 +3,7 @@ use std::collections::HashMap;
 use serde::ser::{Serialize, Serializer, SerializeStruct};
 
 #[derive(Serialize)]
-#[serde(rename_all="lowercase")]
+#[serde(rename_all = "lowercase")]
 pub enum Orientation {
     Top,
     Left,
@@ -42,11 +42,11 @@ pub struct QualKeyVal {
 
 impl QualKeyVal {
     pub fn new(key: &'static str, val: f32) -> QualKeyVal {
-        QualKeyVal { key, val}
+        QualKeyVal { key, val }
     }
 }
 impl Serialize for QualKeyVal {
-     fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
     where
         S: Serializer,
     {
@@ -76,9 +76,14 @@ impl JSONDict {
     }
 
     /// band_create adds one tuple of type (String, String), and another of type (String, i32),
-    /// that get serialized. often times bands and other values that describe a visualization show up 
+    /// that get serialized. often times bands and other values that describe a visualization show up
     /// and use this structure, hence a dedicated constructor to make it easier.
-    pub fn band_create(x_key: &'static str, x_val: &str, y_key: &'static str, y_val: i32) -> JSONDict {
+    pub fn band_create(
+        x_key: &'static str,
+        x_val: &str,
+        y_key: &'static str,
+        y_val: i32,
+    ) -> JSONDict {
         let mut d = JSONDict {
             str_vals: HashMap::new(),
             i32_vals: HashMap::new(),
@@ -86,6 +91,25 @@ impl JSONDict {
         d.str_vals.insert(x_key, x_val.to_string());
         d.i32_vals.insert(y_key, y_val);
         d
+    }
+
+    pub fn tri_create(
+        x_key: &'static str,
+        x_val: &str,
+        y_key: &'static str,
+        y_val: i32,
+        z_key: &'static str,
+        z_val: i32,
+    ) -> JSONDict {
+        let mut d = JSONDict {
+            str_vals: HashMap::new(),
+            i32_vals: HashMap::new(),
+        };
+        d.str_vals.insert(x_key, String::from(x_val));
+        d.i32_vals.insert(y_key, y_val);
+        d.i32_vals.insert(z_key, z_val);
+        d
+
     }
 }
 
