@@ -2,13 +2,10 @@
 use backend::elements::line_chart::*;
 use serde::ser::{Serialize, SerializeStruct, Serializer};
 use backend::traits::Graphable;
-use std;
-use std::io;
-use std::io::Write;
-use serde_json;
 
 pub struct LineChart {
     pub identifier: String,
+    pub description: String,
     pub width: u32,
     pub height: u32,
     pub padding: u32,
@@ -23,6 +20,7 @@ impl LineChart {
     pub fn new() -> LineChart {
         LineChart {
             identifier: String::from("line_chart"),
+            description: String::from("Line Chart"),
             width: 500,
             height: 300,
             padding: 5,
@@ -61,9 +59,7 @@ impl Serialize for LineChart {
     }
 }
 impl Graphable for LineChart {
-    fn save_to_file(&self) -> io::Result<()> {
-        let mut f = std::fs::File::create(format!("{}.json", &self.identifier))?;
-        f.write_all(serde_json::to_string(self)?.as_bytes())?;
-        Ok(())
+    fn get_description(&self) -> &str {
+        &self.description
     }
 }

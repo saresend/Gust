@@ -5,16 +5,13 @@
 
 use backend::elements::stacked_bar_chart::*;
 use backend::traits::Graphable;
-use std;
-use serde_json;
-use std::io;
-use std::io::Write;
+
 use serde::ser::{Serialize, SerializeStruct, Serializer};
-use backend::general::FileType;
-use frontend::write::render_graph;
+
 
 pub struct StackedBarChart {
     pub identifier: String,
+    pub description: String,
     pub width: u16,
     pub height: u16,
     pub padding: u16,
@@ -31,6 +28,7 @@ impl StackedBarChart {
     pub fn new() -> StackedBarChart {
         StackedBarChart {
             identifier: String::from("stacked_bar_chart"),
+            description: String::from("Stacked Bar Chart"),
             width: 500,
             height: 300,
             padding: 5,
@@ -69,16 +67,7 @@ impl Serialize for StackedBarChart {
 }
 
 impl Graphable for StackedBarChart {
-    fn save_to_file(&self, file_type: FileType) -> io::Result<()> {
-        match file_type {
-            JSON => {
-                let mut f = std::fs::File::create(format!("{}.json", &self.identifier))?;
-                f.write_all(serde_json::to_string(self)?.as_bytes())?;
-                Ok(())
-            }
-            HTML => {
-                let mut f = std::fs::File::create(format!("{}.html", &self.identifier))?;
-            }
-        }
+    fn get_description(&self) -> &str {
+        &self.description
     }
 }

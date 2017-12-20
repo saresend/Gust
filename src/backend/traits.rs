@@ -1,7 +1,12 @@
 
-use std::io;
-use backend::general::FileType;
 
-pub trait Graphable {
-    fn save_to_file(&self, FileType) -> Result<(), io::Error>;
+use serde::ser::Serialize;
+use serde_json;
+
+pub trait Graphable: Sized + Serialize {
+    fn get_json_representation(&self) -> String {
+        serde_json::to_string(self).unwrap()
+    }
+
+    fn get_description(&self) -> &str;
 }
