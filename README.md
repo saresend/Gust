@@ -36,7 +36,7 @@ More will be coming soon! If you're interested in contributing your own, just re
 ## [Why did you do this in rust?](https://transitiontech.ca/random/RIIR) ## 
 
 ## Installation ## 
-` gust = "0.1.1" `
+` gust = "0.1.2" `
 
 
 
@@ -76,7 +76,7 @@ let mut b = StackedBarChart::new();
 
 
 ## Additional Docs ## 
-https://docs.rs/gust/0.1.1/gust/
+https://docs.rs/gust/0.1.2/gust/
 
 
 ## Special Mentions ## 
