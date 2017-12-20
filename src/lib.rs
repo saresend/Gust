@@ -20,7 +20,8 @@ mod tests {
     use super::backend::bar_chart::BarChart;
     use super::backend::stacked_bar_chart::StackedBarChart;
     use super::backend::line_chart::LineChart;
-
+    use super::frontend::write::render_graph;
+    use super::backend::general::FileType;
     #[test]
     fn test_bar_chart() {
         let mut b = BarChart::new();
@@ -28,6 +29,8 @@ mod tests {
         for i in 0..10 {
             b.add_data(v[i].to_string(), (i * i * i) as i32);
         }
+        render_graph(&b, FileType::HTML).unwrap();
+        render_graph(&b, FileType::JSON).unwrap();
     }
     #[test]
     fn test_stacked_bar_chart() {
@@ -36,6 +39,7 @@ mod tests {
             b.add_data(i, i * i, 1);
             b.add_data(i, i + i, 0);
         }
+        render_graph(&b, FileType::HTML).unwrap();
     }
     #[test]
     fn test_line_chart() {
@@ -44,5 +48,6 @@ mod tests {
             c.add_data(i, i * i, 0);
             c.add_data(i, 2 * i, 1);
         }
+        render_graph(&c, FileType::HTML).unwrap();
     }
 }
