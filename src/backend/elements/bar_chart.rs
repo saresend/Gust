@@ -16,6 +16,9 @@ impl BarChartData {
             values: vec![],
         }
     }
+    pub fn clear(&mut self) {
+        self.values.clear()
+    }
 }
 
 
@@ -95,6 +98,9 @@ pub struct BarChartAxis {
 }
 
 impl BarChartAxis {
+    /// create_xaxis creates a default Axis for the bar chart
+    /// It specifies A BarChartAxis with the following criteria:
+    /// Scale: xscale, Orientation::Bottom,
     pub fn create_xaxis() -> BarChartAxis {
         BarChartAxis {
             orient: Orientation::Bottom,

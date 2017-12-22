@@ -48,8 +48,26 @@ impl BarChart {
             .push(BarChartValue::new(category, amount));
     }
 
+    /// Sets the description that is used to title the chart when rendering
     pub fn set_description(&mut self, description: &str) {
         self.description = String::from(description);
+    }
+
+    ///This sets the size of the overal graph to be rendered
+    /// The tuple it takes represents the (height, width) 
+    pub fn set_dimension(&mut self, t: (i32, i32)) {
+        self.height = t.0;
+        self.width = t.1;
+    }
+
+    /// Sets the number of padding pixels around the chart
+    pub fn set_padding(&mut self, pad: i32) {
+        self.padding = pad;
+    }
+
+
+    pub fn clear_data(&mut self) {
+        self.data[0].clear()
     }
 }
 
