@@ -116,8 +116,9 @@ mod tests {
     fn test_configuring_chart() {
         let mut b = BarChart::new();
         for i in 1..35 {
-            b.add_data(i.to_string(), 1 / i );
+            b.add_data(i.to_string(), i + 1);
         }
+        b.set_identifier("configured_bar_chart");
         b.set_description("Gusty Chart");
         b.set_color("black");
         render_graph(&b, FileType::HTML).unwrap();

@@ -34,7 +34,7 @@ pub fn render_graph<T: Graphable>(graph: &T, ft: FileType) -> Result<(), std::io
             raw_file.write_all(s.as_bytes())?;
             let html_str = create_html(
                 &format!("raw/{}.json", graph.get_identifier()),
-                graph.get_identifier(),
+                graph.get_description(),
             ).unwrap();
             f.write_all(html_str.as_bytes())?;
         }

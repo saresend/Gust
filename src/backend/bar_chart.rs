@@ -51,6 +51,13 @@ impl BarChart {
         self.description = String::from(description);
     }
 
+    ///Sets the identifier for the graph. This is the value used when
+    /// actually naming the file, so you can expect files rendered to fit 
+    /// the following format: <identifier>.<extension>
+    pub fn set_identifier(&mut self, id: &str) {
+        self.identifier = String::from(id);
+    }
+
     ///This sets the size of the overal graph to be rendered
     /// The tuple it takes represents the (height, width) 
     pub fn set_dimension(&mut self, t: (i32, i32)) {
