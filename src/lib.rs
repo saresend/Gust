@@ -119,5 +119,8 @@ mod tests {
             b.add_data(i.to_string(), 1 / i );
         }
         b.set_description("Gusty Chart");
+        b.set_color("black");
+        render_graph(&b, FileType::HTML).unwrap();
     }
+
 }
