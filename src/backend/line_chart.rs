@@ -34,7 +34,23 @@ impl LineChart {
             axes: vec![LineChartAxis::new_xaxis(), LineChartAxis::new_yaxis()],
             marks: vec![LineChartMark::new()],
         }
+
     }
+
+
+    /// Sets the identifier for that graph. The identifier is used to form the
+    /// output file which the graph renders to. It will have the following format:
+    /// <identifier>.<extension>
+    pub fn set_identifier(&mut self, id: &str) {
+        self.identifier = String::from(id);
+    }
+
+    /// Sets the description for the graph. The description is used to title
+    /// the graph when rendering
+    pub fn set_description(&mut self, description: &str) {
+        self.description = String::from(description);
+    }
+
     /// To add data to a line chart, the data must be formatted in the following fashion:
     /// {Integer, Integer, Integer }.
     ///
@@ -45,6 +61,19 @@ impl LineChart {
     pub fn add_data(&mut self, x: i64, y: i64, z: i64) {
         self.data[0].add_data(x, y, z);
     }
+
+
+    /// Sets the dimensions of the graph:
+    /// the dimensions are set as (height, width)
+    pub fn set_dimensions(&mut self, t: (u32, u32)) {
+        self.height = t.0;
+        self.width = t.1;
+    }
+
+    /// Sets the padding pixel count around the border of the graph
+    pub fn set_padding(&mut self, padding: u32) {
+        self.padding = padding;
+    }
 }
 impl Serialize for LineChart {
     fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
@@ -52,7 +81,10 @@ impl Serialize for LineChart {
         S: Serializer,
     {
         let mut s = serializer.serialize_struct("line_chart", 10)?;
-        s.serialize_field("$schema", "https://vega.github.io/schema/vega/v3.0.json")?;
+        s.serialize_field(
+            "$schema",
+            "https://vega.github.io/schema/vega/v3.0.json",
+        )?;
         s.serialize_field("width", &self.width)?;
         s.serialize_field("height", &self.height)?;
         s.serialize_field("padding", &self.padding)?;

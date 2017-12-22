@@ -43,6 +43,23 @@ impl StackedBarChart {
             marks: vec![StackedBarMark::new()],
         }
     }
+    /// adds data to the stacked_bar chart
+    /// x value denotes which bar the value is supposed to be on.
+    /// y values denotes the height of the bar
+    /// z is the stratification variable, meaning you can separate multiple stacked bars based on
+    /// z.
+    /// # Example:
+    /// ```rust
+    ///    use gust::backend::stacked_bar_chart::StackedBarChart;
+    ///
+    ///    let mut b = StackedBarChart::new();
+    ///    for i in 0..10 {
+    ///        b.add_data(i, i * i, 1);
+    ///        b.add_data(i, i + i, 0);
+    ///    }
+    /// ```
+    /// Here, we see there are two values entered for each i, one with a 1 value for z, and one with
+    /// a zero value. This is how gust splits the stacked bars into two.
     pub fn add_data(&mut self, x: i64, y: i64, z: i64) {
         self.data[0].add_data(x, y, z);
     }
@@ -53,7 +70,10 @@ impl Serialize for StackedBarChart {
         S: Serializer,
     {
         let mut s = serializer.serialize_struct("sb_graph", 9)?;
-        s.serialize_field("$schema", "https://vega.github.io/schema/vega/v3.0.json")?;
+        s.serialize_field(
+            "$schema",
+            "https://vega.github.io/schema/vega/v3.0.json",
+        )?;
         s.serialize_field("width", &self.width)?;
         s.serialize_field("height", &self.height)?;
         s.serialize_field("padding", &self.padding)?;

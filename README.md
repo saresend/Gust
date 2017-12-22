@@ -2,7 +2,7 @@
 A charting library for rust!
 
 [![Build Status](https://travis-ci.org/saresend/Gust.svg?branch=master)](https://travis-ci.org/saresend/Gust.svg?branch=master)
-![Downloads](https://img.shields.io/crates/d/gust.svg)
+![Crates.io](https://img.shields.io/crates/v/gust.svg)
 
 
 **Disclaimer**
