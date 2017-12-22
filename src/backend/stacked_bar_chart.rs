@@ -10,17 +10,17 @@ use serde::ser::{Serialize, SerializeStruct, Serializer};
 
 
 pub struct StackedBarChart {
-    pub identifier: String,
-    pub description: String,
-    pub width: u16,
-    pub height: u16,
-    pub padding: u16,
+    identifier: String,
+    description: String,
+    width: u32,
+    height: u32,
+    padding: u32,
 
-    pub data: Vec<StackedBarData>,
+    data: Vec<StackedBarData>,
 
-    pub scales: Vec<StackedBarScale>,
-    pub axes: Vec<StackedBarAxis>,
-    pub marks: Vec<StackedBarMark>,
+    scales: Vec<StackedBarScale>,
+    axes: Vec<StackedBarAxis>,
+    marks: Vec<StackedBarMark>,
 }
 
 
@@ -43,6 +43,26 @@ impl StackedBarChart {
             marks: vec![StackedBarMark::new()],
         }
     }
+
+    pub fn set_identifier(&mut self, id: &str) {
+        self.identifier = String::from(id);
+    }
+
+    pub fn set_description(&mut self, description: &str) {
+        self.description = String::from(description);
+    }
+
+    /// Sets the dimensions of the graph:
+    /// the dimensions are set as (height, width)
+    pub fn set_dimensions(&mut self, t: (u32, u32)) {
+        self.height = t.0;
+        self.width = t.1;
+    }
+    /// Sets the padding pixel count around the border of the graph
+    pub fn set_padding(&mut self, padding: u32) {
+        self.padding = padding;
+    }
+
     /// adds data to the stacked_bar chart
     /// x value denotes which bar the value is supposed to be on.
     /// y values denotes the height of the bar
