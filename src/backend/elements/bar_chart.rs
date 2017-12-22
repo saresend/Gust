@@ -133,6 +133,9 @@ impl BarChartMark {
             encode: BarChartEncoding::create(),
         }
     }
+    pub fn set_color(&mut self, color: &str) {
+        self.encode.set_color(color);
+    }
 }
 
 impl Serialize for BarChartMark {
@@ -161,6 +164,9 @@ impl BarChartEncoding {
             update: BarChartFill::new("steelblue"),
             hover: BarChartFill::new("red"),
         }
+    }
+    pub fn set_color(&mut self, color: &str) {
+        self.update.set_color(color);
     }
 }
 
@@ -192,5 +198,8 @@ impl BarChartFill {
         BarChartFill {
             fill: JSONDict::create("value", color, "fillOpacity", "0.5"),
         }
+    }
+    pub fn set_color(&mut self, color: &str) {
+        self.fill = JSONDict::create("value", color, "fillOpacity", "0.5");
     }
 }

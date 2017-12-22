@@ -68,6 +68,11 @@ impl BarChart {
     pub fn clear_data(&mut self) {
         self.data[0].clear()
     }
+
+    /// set_color sets the default color of the bars in the bar chart
+    pub fn set_color(&mut self, color: &str) {
+        self.marks[0].set_color(color);
+    }
 }
 
 impl Serialize for BarChart {
