@@ -6,15 +6,15 @@ use serde::ser::{Serialize, SerializeStruct, Serializer};
 #[derive(Serialize)]
 pub struct StackedBarData {
     name: String,
-    pub transform: Vec<StackedBarTransform>,
+    transform: Vec<StackedBarTransform>,
     values: Vec<StackedBarDataValue>,
 }
 
 #[derive(Serialize)]
 pub struct StackedBarDataValue {
-    pub x: i64,
-    pub y: i64,
-    pub z: i64,
+    x: i64,
+    y: i64,
+    z: i64,
 }
 
 impl StackedBarData {
@@ -31,10 +31,10 @@ impl StackedBarData {
 }
 
 pub struct StackedBarTransform {
-    pub transform_type: String,
-    pub group_by: Vec<String>,
-    pub sort: KeyVal,
-    pub field: String,
+    transform_type: String,
+    group_by: Vec<String>,
+    sort: KeyVal,
+    field: String,
 }
 impl StackedBarTransform {
     pub fn new() -> StackedBarTransform {
@@ -201,6 +201,8 @@ struct StackedBarFill {
 }
 impl StackedBarFill {
     pub fn new(val: f32) -> StackedBarFill {
-        StackedBarFill { fillOpacity: QualKeyVal::new("value", val) }
+        StackedBarFill {
+            fillOpacity: QualKeyVal::new("value", val),
+        }
     }
 }

@@ -5,8 +5,8 @@ use serde::ser::{Serialize, SerializeStruct, Serializer};
 
 #[derive(Serialize)]
 pub struct BarChartData {
-    pub name: String,
-    pub values: Vec<BarChartValue>,
+    name: String,
+    values: Vec<BarChartValue>,
 }
 
 impl BarChartData {
@@ -18,6 +18,9 @@ impl BarChartData {
     }
     pub fn clear(&mut self) {
         self.values.clear()
+    }
+    pub fn add_data(&mut self, category: String, amount: i32) {
+        self.values.push(BarChartValue::new(category, amount));
     }
 }
 
@@ -35,11 +38,11 @@ impl BarChartValue {
 
 
 pub struct BarChartScale {
-    pub name: String,
-    pub scale_type: String,
+    name: String,
+    scale_type: String,
     domain: BarChartDomain,
-    pub range: String,
-    pub padding: f64,
+    range: String,
+    padding: f64,
 }
 
 impl BarChartScale {
@@ -117,8 +120,8 @@ impl BarChartAxis {
 }
 
 pub struct BarChartMark {
-    pub mark_type: String,
-    pub from: KeyVal,
+    mark_type: String,
+    from: KeyVal,
     encode: BarChartEncoding,
 }
 

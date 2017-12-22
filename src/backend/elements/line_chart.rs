@@ -6,9 +6,9 @@ use serde::ser::{Serialize, SerializeStruct, Serializer};
 
 #[derive(Serialize)]
 pub struct LineChartSignal {
-    pub name: String,
-    pub value: String,
-    pub bind: LineChartInterpolation,
+    name: String,
+    value: String,
+    bind: LineChartInterpolation,
 }
 impl LineChartSignal {
     pub fn new() -> LineChartSignal {
@@ -144,9 +144,9 @@ impl LineChartAxis {
 }
 
 pub struct LineChartMark {
-    pub mark_type: String,
-    pub from: LineChartFacet,
-    pub marks: Vec<LineChartMarkDescription>,
+    mark_type: String,
+    from: LineChartFacet,
+    marks: Vec<LineChartMarkDescription>,
 }
 impl LineChartMark {
     pub fn new() -> LineChartMark {
@@ -170,9 +170,9 @@ impl Serialize for LineChartMark {
     }
 }
 pub struct LineChartMarkDescription {
-    pub mark_type: String,
-    pub from: KeyVal,
-    pub encode: LineChartEncoding,
+    mark_type: String,
+    from: KeyVal,
+    encode: LineChartEncoding,
 }
 impl LineChartMarkDescription {
     pub fn new() -> LineChartMarkDescription {
@@ -198,9 +198,9 @@ impl Serialize for LineChartMarkDescription {
 
 #[derive(Serialize)]
 pub struct LineChartEncoding {
-    pub enter: LineChartEnter,
-    pub update: LineChartUpdate,
-    pub hover: LineChartHover,
+    enter: LineChartEnter,
+    update: LineChartUpdate,
+    hover: LineChartHover,
 }
 impl LineChartEncoding {
     pub fn new() -> LineChartEncoding {
@@ -215,10 +215,10 @@ impl LineChartEncoding {
 #[derive(Serialize)]
 #[allow(non_snake_case)]
 pub struct LineChartEnter {
-    pub x: JSONDict,
-    pub y: JSONDict,
-    pub stroke: JSONDict,
-    pub strokeWidth: QualKeyVal,
+    x: JSONDict,
+    y: JSONDict,
+    stroke: JSONDict,
+    strokeWidth: QualKeyVal,
 }
 impl LineChartEnter {
     pub fn new() -> LineChartEnter {
@@ -233,8 +233,8 @@ impl LineChartEnter {
 #[derive(Serialize)]
 #[allow(non_snake_case)]
 pub struct LineChartUpdate {
-    pub interpolate: KeyVal,
-    pub fillOpacity: QualKeyVal,
+    interpolate: KeyVal,
+    fillOpacity: QualKeyVal,
 }
 impl LineChartUpdate {
     pub fn new() -> LineChartUpdate {
@@ -248,7 +248,7 @@ impl LineChartUpdate {
 #[derive(Serialize)]
 #[allow(non_snake_case)]
 pub struct LineChartHover {
-    pub fillOpacity: QualKeyVal,
+    fillOpacity: QualKeyVal,
 }
 impl LineChartHover {
     pub fn new() -> LineChartHover {
@@ -260,7 +260,7 @@ impl LineChartHover {
 
 #[derive(Serialize)]
 pub struct LineChartFacet {
-    pub facet: LineChartDescriptor,
+    facet: LineChartDescriptor,
 }
 impl LineChartFacet {
     pub fn new() -> LineChartFacet {
@@ -272,9 +272,9 @@ impl LineChartFacet {
 
 #[derive(Serialize)]
 pub struct LineChartDescriptor {
-    pub name: String,
-    pub data: String,
-    pub groupby: String,
+    name: String,
+    data: String,
+    groupby: String,
 }
 impl LineChartDescriptor {
     pub fn new() -> LineChartDescriptor {

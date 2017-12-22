@@ -43,9 +43,7 @@ impl BarChart {
     /// { String, Integer }, which represent the category (aka Bar), as well as the value of that bar
     /// (i.e. it's height). 
     pub fn add_data(&mut self, category: String, amount: i32) {
-        self.data[0]
-            .values
-            .push(BarChartValue::new(category, amount));
+        self.data[0].add_data(category, amount);
     }
 
     /// Sets the description that is used to title the chart when rendering
@@ -65,7 +63,8 @@ impl BarChart {
         self.padding = pad;
     }
 
-
+    /// clear_data empties out all of the data entries 
+    /// that currently exist in the given graph
     pub fn clear_data(&mut self) {
         self.data[0].clear()
     }
