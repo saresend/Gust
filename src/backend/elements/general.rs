@@ -43,8 +43,8 @@ impl Serialize for KeyVal {
 /// QualKeyVal is very similar to KeyVal, except it stores a float32 instead of a string
 /// as it's value: {key, val} (&str, f32)
 pub struct QualKeyVal {
-    pub key: &'static str,
-    pub val: f32,
+    key: &'static str,
+    val: f32,
 }
 
 impl QualKeyVal {
@@ -65,13 +65,13 @@ impl Serialize for QualKeyVal {
 
 ///JSONDict is a helper structure which represents an arbitrary json dictionary of the following form:
 /// `
-/// { 
+/// {
 ///     foo: bar,
 ///     baz: foobar,
-///     ... 
+///     ...
 ///  }
 /// `
-/// It can hold an arbitrary quantity of these, and serializes appropriately. The helper functions provided 
+/// It can hold an arbitrary quantity of these, and serializes appropriately. The helper functions provided
 /// are mostly convenience functions for some of the common types of json dictionaries which show up in the Vega
 /// specification
 pub struct JSONDict {
