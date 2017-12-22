@@ -136,15 +136,6 @@ impl BarChartMark {
     pub fn set_color(&mut self, color: &str) {
         self.encode.set_color(color);
     }
-
-
-    pub fn create_tooltip_marks() -> BarChartMark {
-        BarChartMark {
-            name: String::from("text"),
-            from: KeyVal::new("data", "table"),
-            encode: BarChartEncoding::tooltip(),
-        }
-    }
 }
 
 impl Serialize for BarChartMark {
@@ -174,7 +165,6 @@ impl BarChartEncoding {
             hover: BarChartFill::new("red"),
         }
     }
-}
 
 
 
@@ -208,9 +198,7 @@ struct BarChartFill {
 
 impl BarChartFill {
     pub fn new(color: &str) -> BarChartFill {
-        BarChartFill {
-            fill: JSONDict::create("value", color, "fillOpacity", "0.5"),
-        }
+        BarChartFill { fill: JSONDict::create("value", color, "fillOpacity", "0.5") }
     }
     pub fn set_color(&mut self, color: &str) {
         self.fill = JSONDict::create("value", color, "fillOpacity", "0.5");
@@ -218,21 +206,4 @@ impl BarChartFill {
 }
 
 
-pub struct BarChartSignal {
-    name: String,
-    value: String,
-    on: Vec<JSONDict>,
-}
 
-impl BarChartSignal {
-    pub fn new() -> BarChartSignal {
-        BarChartSignal {
-            name: String::from("tooltip"),
-            value: String::from("{}"),
-            on: vec![
-                JSONDict::create("events", "rect:mouseover", "update", "datum"),
-                JSONDict::create("events", "rect:mouseout", "update", "{}"),
-            ],
-        }
-    }
-}

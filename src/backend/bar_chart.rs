@@ -17,8 +17,6 @@ pub struct BarChart {
     data: Vec<BarChartData>,
     scales: Vec<BarChartScale>,
     axes: Vec<BarChartAxis>,
-    signals: Vec<BarChartSignal>,
-
     marks: Vec<BarChartMark>,
 }
 
@@ -42,7 +40,7 @@ impl BarChart {
     }
     /// Bar Chart accept data in the following format:
     /// { String, Integer }, which represent the category (aka Bar), as well as the value of that bar
-    /// (i.e. it's height). 
+    /// (i.e. it's height).
     pub fn add_data(&mut self, category: String, amount: i32) {
         self.data[0].add_data(category, amount);
     }
@@ -53,14 +51,14 @@ impl BarChart {
     }
 
     ///Sets the identifier for the graph. This is the value used when
-    /// actually naming the file, so you can expect files rendered to fit 
+    /// actually naming the file, so you can expect files rendered to fit
     /// the following format: <identifier>.<extension>
     pub fn set_identifier(&mut self, id: &str) {
         self.identifier = String::from(id);
     }
 
     ///This sets the size of the overal graph to be rendered
-    /// The tuple it takes represents the (height, width) 
+    /// The tuple it takes represents the (height, width)
     pub fn set_dimension(&mut self, t: (i32, i32)) {
         self.height = t.0;
         self.width = t.1;
@@ -71,7 +69,7 @@ impl BarChart {
         self.padding = pad;
     }
 
-    /// clear_data empties out all of the data entries 
+    /// clear_data empties out all of the data entries
     /// that currently exist in the given graph
     pub fn clear_data(&mut self) {
         self.data[0].clear()
@@ -89,7 +87,10 @@ impl Serialize for BarChart {
         S: Serializer,
     {
         let mut s = serializer.serialize_struct("graph", 10)?;
-        s.serialize_field("$schema", "https://vega.github.io/schema/vega/v3.0.json")?;
+        s.serialize_field(
+            "$schema",
+            "https://vega.github.io/schema/vega/v3.0.json",
+        )?;
         s.serialize_field("width", &self.width)?;
         s.serialize_field("height", &self.height)?;
         s.serialize_field("padding", &self.padding)?;
