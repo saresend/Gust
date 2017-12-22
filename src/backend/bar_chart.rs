@@ -17,6 +17,7 @@ pub struct BarChart {
     data: Vec<BarChartData>,
     scales: Vec<BarChartScale>,
     axes: Vec<BarChartAxis>,
+    signals: Vec<BarChartSignal>,
 
     marks: Vec<BarChartMark>,
 }
