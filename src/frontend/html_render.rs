@@ -4,7 +4,7 @@ use std;
 use liquid;
 
 
-
+const TEMPLATE: &'static str = include_str!("template.html");
 
 pub fn create_html(data: &str, title: &str) -> Result<(String), std::io::Error> {
     let mut globals = liquid::Object::new();
@@ -13,7 +13,7 @@ pub fn create_html(data: &str, title: &str) -> Result<(String), std::io::Error> 
 
     let template = liquid::ParserBuilder::with_liquid()
         .build()
-        .parse_file("./src/frontend/template.html")
+        .parse(TEMPLATE) 
         .unwrap();
     let output = template.render(&globals).unwrap();
     Ok((output))
