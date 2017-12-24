@@ -1,6 +1,6 @@
 [package]
 name = "gust"
-version = "0.1.3"
+version = "0.1.4"
 authors = ["Samuel Resendez <saresend@usc.edu>"]
 description = """ A small charting library for generating d3 and html charts using Rust """
 license = "Unlicense/MIT"
