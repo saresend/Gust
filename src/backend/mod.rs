@@ -12,3 +12,4 @@ pub mod stacked_bar_chart;
 pub mod line_chart;
 pub mod traits;
 pub mod general;
+pub mod area_chart;

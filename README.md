@@ -30,7 +30,7 @@ Currently, Gust supports only 3 charts so far:
 2. Stacked Bar Charts
 3. Line Charts
 
-More will be coming soon! If you're interested in contributing your own, just read the [contributions](./CONTRIBUTING.md) page. Cheers!
+More will be coming soon! If you're interested in contributing your own, just make a pull request. Cheers!
 
 
 
