@@ -11,7 +11,7 @@ use backend::elements::area_chart::*;
 /// AreaChart is the primary struct which describes a Area Chart, as by the vega specification
 /// # Example
 ///
-/// ```rust
+/// ```
 ///     use gust::backend::area_chart::AreaChart;
 ///
 ///     let mut a = AreaChart::new();
@@ -31,3 +31,5 @@ pub struct AreaChart {
     axes: Vec<AreaChartAxis>,
     marks: Vec<AreaChartMark>,
 }
+
+impl AreaChart {}

@@ -8,7 +8,7 @@ use backend::elements::general::*;
 
 use serde::ser::Serialize;
 
-
+#[derive(Serialize)]
 pub struct AreaChartSignal {
     name: String,
     value: String,
@@ -19,6 +19,7 @@ pub struct SignalBinding {
     input: String,
     options: Vec<String>,
 }
+#[derive(Serialize)]
 pub struct AreaChartData {
     name: String,
     values: Vec<AreaChartDataEntry>,
@@ -39,26 +40,30 @@ pub struct AreaChartMark {
     mark_type: String,
     from: String,
     encode: AreaChartEncoding,
-
 }
-
+#[derive(Serialize)]
 pub struct AreaChartEncoding {
-     enter: AreaChartEnter,
-     update: AreaChartUpdate,
-     hover: AreaChartHover, 
+    enter: AreaChartEnter,
+    update: AreaChartUpdate,
+    hover: AreaChartHover,
+}
+#[derive(Serialize)]
+pub struct AreaChartEnter {
+    x: JSONDict,
+    y: JSONDict,
+    y2: JSONDict,
+    fill: JSONDict,
+}
+#[derive(Serialize)]
+pub struct AreaChartUpdate {
+    interpolate: KeyVal,
+    fillOpacity: QualKeyVal,
 }
 
-pub struct AreaChartEnter {
-    x: JSONDict, 
-    y: JSONDict, 
-    y2: JSONDict, 
-    fill: JSONDict, 
-} 
-pub struct AreaChartUpdate {
-   interpolate: KeyVal,
-   fillOpacity: QualKeyVal, 
+#[derive(Serialize)]
+pub struct AreaChartHover {
+    fillOpacity: QualKeyVal,
 }
-    
 
 pub struct AreaChartScale {
     name: String,
@@ -67,5 +72,3 @@ pub struct AreaChartScale {
     zero: bool,
     domain: JSONDict,
 }
-
-
