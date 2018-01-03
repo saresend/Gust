@@ -13,7 +13,7 @@ pub fn create_html(data: &str, title: &str) -> Result<(String), std::io::Error> 
 
     let template = liquid::ParserBuilder::with_liquid()
         .build()
-        .parse(TEMPLATE) 
+        .parse(TEMPLATE)
         .unwrap();
     let output = template.render(&globals).unwrap();
     Ok((output))

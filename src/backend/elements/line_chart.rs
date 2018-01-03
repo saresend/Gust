@@ -252,9 +252,7 @@ pub struct LineChartHover {
 }
 impl LineChartHover {
     pub fn new() -> LineChartHover {
-        LineChartHover {
-            fillOpacity: QualKeyVal::new("value", 0.5),
-        }
+        LineChartHover { fillOpacity: QualKeyVal::new("value", 0.5) }
     }
 }
 
@@ -264,9 +262,7 @@ pub struct LineChartFacet {
 }
 impl LineChartFacet {
     pub fn new() -> LineChartFacet {
-        LineChartFacet {
-            facet: LineChartDescriptor::new(),
-        }
+        LineChartFacet { facet: LineChartDescriptor::new() }
     }
 }
 

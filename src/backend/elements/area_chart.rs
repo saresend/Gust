@@ -14,6 +14,16 @@ pub struct AreaChartSignal {
     value: String,
     bind: SignalBinding,
 }
+
+impl AreaChartSignal {
+    pub fn default() -> AreaChartSignal {
+        AreaChartSignal {
+            name: String::from("interpolate"),
+            value: String::from("monotone"),
+            bind: SignalBinding::default(),
+        }
+    }
+}
 #[derive(Serialize)]
 pub struct SignalBinding {
     input: String,

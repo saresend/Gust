@@ -204,6 +204,3 @@ impl BarChartFill {
         self.fill = JSONDict::create("value", color, "fillOpacity", "0.5");
     }
 }
-
-
-

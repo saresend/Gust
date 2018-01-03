@@ -201,8 +201,6 @@ struct StackedBarFill {
 }
 impl StackedBarFill {
     pub fn new(val: f32) -> StackedBarFill {
-        StackedBarFill {
-            fillOpacity: QualKeyVal::new("value", val),
-        }
+        StackedBarFill { fillOpacity: QualKeyVal::new("value", val) }
     }
 }

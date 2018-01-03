@@ -82,6 +82,7 @@ mod tests {
     use super::backend::bar_chart::BarChart;
     use super::backend::stacked_bar_chart::StackedBarChart;
     use super::backend::line_chart::LineChart;
+    use super::backend::area_chart::AreaChart;
     use super::frontend::write::render_graph;
     use super::backend::general::FileType;
     #[test]
@@ -122,6 +123,18 @@ mod tests {
         b.set_description("Gusty Chart");
         b.set_color("black");
         render_graph(&b, FileType::HTML).unwrap();
+    }
+    #[test]
+    fn test_area_chart() {
+        let area_chart = AreaChart::new();
+
+
+        for i in 0..20 {
+            area_chart.add_data(i, 2 * i);
+        }
+
+        render_graph(&area_chart, FileType::HTML).unwrap();
+
     }
 
 }
