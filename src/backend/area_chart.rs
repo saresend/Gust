@@ -41,7 +41,7 @@ impl AreaChart {
             padding: 5,
 
             signals: vec![AreaChartSignal::default()],
-            scales: vec![AreaChartScale::default()],
+            scales: vec![AreaChartScale::default_x(), AreaChartScale::default_y()],
         }
-    }
+    
 }

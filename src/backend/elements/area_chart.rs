@@ -6,7 +6,7 @@
 use backend::elements::general::*;
 
 
-use serde::ser::Serialize;
+use serde::ser::{Serializer, SerializeStruct, Serialize};
 
 #[derive(Serialize)]
 pub struct AreaChartSignal {
@@ -84,6 +84,7 @@ pub struct AreaChartUpdate {
 }
 
 #[derive(Serialize)]
+#[ignore(warn_snake_case)]
 pub struct AreaChartHover {
     fillOpacity: QualKeyVal,
 }
@@ -101,7 +102,8 @@ impl AreaChartScale {
         AreaChartScale {
             name: String::from("xscale"),
             scale_type: String::from("linear"),
-            zero: false, 
+            zero: false,
+            range: String::from("width"),
             domain: JSONDict::create("data", "table", "field", "u"),
         }
 
@@ -110,11 +112,28 @@ impl AreaChartScale {
         AreaChartScale {
             name: String::from("yscale"),
             scale_type: String::from("linear"),
-            zero: true, 
+            zero: true,
+            range: String::from("height"),
             domain: JSONDict::create("data", "table", "field", "v"),
         }
 
     }
+}
+
+
+impl Serialize for AreaChartScale {
+    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+    where
+        S: Serializer,
+    {
+        let mut s = serializer.serialize_struct("area_chart", 10)?;
+        s.serialize_field("name", &self.name)?;
+        s.serialize_field("type", &self.scale_type)?;
+        s.serialize_field("range", &self.range)?;
+        s.serialize_field("zero", &self.zero)?;
+        s.serialize_field("domain", &self.domain)?;
+
+        s.end()
 
     }
 }
