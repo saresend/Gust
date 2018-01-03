@@ -29,6 +29,19 @@ pub struct SignalBinding {
     input: String,
     options: Vec<String>,
 }
+impl SignalBinding {
+    pub fn default() -> SignalBinding {
+        SignalBinding {
+            input: String::from("select"),
+            options: vec![
+                String::from("basis"),
+                String::from("cardinal"),
+                String::from("linear"),
+                String::from("monotone"),
+            ],
+        }
+    }
+}
 #[derive(Serialize)]
 pub struct AreaChartData {
     name: String,
@@ -81,4 +94,27 @@ pub struct AreaChartScale {
     range: String,
     zero: bool,
     domain: JSONDict,
+}
+
+impl AreaChartScale {
+    pub fn default_x() -> AreaChartScale {
+        AreaChartScale {
+            name: String::from("xscale"),
+            scale_type: String::from("linear"),
+            zero: false, 
+            domain: JSONDict::create("data", "table", "field", "u"),
+        }
+
+    }
+    pub fn default_y() -> AreaChartScale {
+        AreaChartScale {
+            name: String::from("yscale"),
+            scale_type: String::from("linear"),
+            zero: true, 
+            domain: JSONDict::create("data", "table", "field", "v"),
+        }
+
+    }
+
+    }
 }

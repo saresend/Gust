@@ -32,4 +32,16 @@ pub struct AreaChart {
     marks: Vec<AreaChartMark>,
 }
 
-impl AreaChart {}
+impl AreaChart {
+    pub fn new() -> AreaChart {
+        AreaChart {
+            width: 400,
+            height: 200,
+
+            padding: 5,
+
+            signals: vec![AreaChartSignal::default()],
+            scales: vec![AreaChartScale::default()],
+        }
+    }
+}
