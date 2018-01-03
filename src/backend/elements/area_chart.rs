@@ -88,14 +88,34 @@ impl AreaChartAxis {
 }
 pub struct AreaChartMark {
     mark_type: String,
-    from: String,
+    from: KeyVal,
     encode: AreaChartEncoding,
+}
+
+impl AreaChartMark {
+    pub fn default() -> AreaChartMark {
+        AreaChartMark {
+            mark_type: String::from("area"),
+            from: KeyVal::new("data", "table"),
+            encode: AreaChartEncoding::default(),
+        }
+    }
 }
 #[derive(Serialize)]
 pub struct AreaChartEncoding {
     enter: AreaChartEnter,
     update: AreaChartUpdate,
     hover: AreaChartHover,
+}
+
+impl AreaChartEncoding {
+    pub fn default() -> AreaChartEncoding {
+        AreaChartEncoding {
+            enter: AreaChartEnter::default(),
+            update: AreaChartUpdate::default(),
+            hover: AreaChartHover::default(),
+        }
+    }
 }
 #[derive(Serialize)]
 pub struct AreaChartEnter {
