@@ -122,7 +122,18 @@ pub struct AreaChartEnter {
     x: JSONDict,
     y: JSONDict,
     y2: JSONDict,
-    fill: JSONDict,
+    fill: KeyVal,
+}
+
+impl AreaChartEnter {
+    pub fn default() -> AreaChartEnter {
+        AreaChartEnter {
+            x: JSONDict::create("scale", "xscale", "field", "u"),
+            y: JSONDict::create("scale", "yscale", "field", "v"),
+            y2: JSONDict::band_create("scale", "yscale", "value", 0),
+            fill: KeyVal::new("value", "steelblue"),
+        }
+    }
 }
 #[derive(Serialize)]
 pub struct AreaChartUpdate {
