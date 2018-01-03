@@ -42,6 +42,13 @@ impl AreaChart {
 
             signals: vec![AreaChartSignal::default()],
             scales: vec![AreaChartScale::default_x(), AreaChartScale::default_y()],
+            data: vec![AreaChartData::default()],
+            axes: vec![AreaChartAxis::x_axis(), AreaChartAxis::y_axis()],
+            marks: vec![AreaChartMark::default()],
         }
-    
+    }
+
+    pub fn add_data(&mut self, u: i32, v: i32) {
+        self.data[0].add_data(u, v);
+    }
 }

@@ -71,6 +71,21 @@ pub struct AreaChartAxis {
     orient: Orientation,
     scale: String,
 }
+
+impl AreaChartAxis {
+    pub fn x_axis() -> AreaChartAxis {
+        AreaChartAxis {
+            orient: Orientation::Bottom,
+            scale: String::from("xscale"),
+        }
+    }
+    pub fn y_axis() -> AreaChartAxis {
+        AreaChartAxis {
+            orient: Orientation::Left,
+            scale: String::from("yscale"),
+        }
+    }
+}
 pub struct AreaChartMark {
     mark_type: String,
     from: String,
