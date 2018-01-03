@@ -55,7 +55,7 @@ impl AreaChartData {
             values: vec![],
         }
     }
-    pub fn add_data(&self, u: i32, v: i32) {
+    pub fn add_data(&mut self, u: i32, v: i32) {
         self.values.push(AreaChartDataEntry { u, v });
     }
 }
@@ -141,10 +141,25 @@ pub struct AreaChartUpdate {
     fillOpacity: QualKeyVal,
 }
 
+impl AreaChartUpdate {
+    pub fn default() -> AreaChartUpdate {
+
+        AreaChartUpdate {
+            interpolate: KeyVal::new("signal", "interpolate"),
+            fillOpacity: QualKeyVal::new("value", 1.0),
+        }
+    }
+}
+
 #[derive(Serialize)]
 #[ignore(warn_snake_case)]
 pub struct AreaChartHover {
     fillOpacity: QualKeyVal,
+}
+impl AreaChartHover {
+    pub fn default() -> AreaChartHover {
+        AreaChartHover { fillOpacity: QualKeyVal::new("value", 0.5) }
+    }
 }
 
 pub struct AreaChartScale {

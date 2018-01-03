@@ -6,7 +6,7 @@
 
 
 use backend::elements::area_chart::*;
-
+use backend::traits::Graphable;
 
 /// AreaChart is the primary struct which describes a Area Chart, as by the vega specification
 /// # Example
@@ -19,7 +19,10 @@ use backend::elements::area_chart::*;
 ///         a.add_data(i, i*i);
 ///     }
 ///```
+#[derive(Serialize)]
 pub struct AreaChart {
+    identifier: String,
+    description: String,
     width: u32,
     height: u32,
     padding: u32,
@@ -35,6 +38,8 @@ pub struct AreaChart {
 impl AreaChart {
     pub fn new() -> AreaChart {
         AreaChart {
+            identifier: String::from("area_chart"),
+            description: String::from("Area Chart"),
             width: 400,
             height: 200,
 
@@ -50,5 +55,15 @@ impl AreaChart {
 
     pub fn add_data(&mut self, u: i32, v: i32) {
         self.data[0].add_data(u, v);
+    }
+}
+
+impl Graphable for AreaChart {
+    fn get_description(&self) -> &str {
+
+        &self.description
+    }
+    fn get_identifier(&self) -> &str {
+        &self.identifier
     }
 }
