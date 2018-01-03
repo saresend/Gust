@@ -47,6 +47,18 @@ pub struct AreaChartData {
     name: String,
     values: Vec<AreaChartDataEntry>,
 }
+
+impl AreaChartData {
+    pub fn default() -> AreaChartData {
+        AreaChartData {
+            name: String::from("table"),
+            values: vec![],
+        }
+    }
+    pub fn add_data(&self, u: i32, v: i32) {
+        self.values.push(AreaChartDataEntry { u, v });
+    }
+}
 #[derive(Serialize)]
 pub struct AreaChartDataEntry {
     u: i32,
@@ -132,6 +144,8 @@ impl Serialize for AreaChartScale {
         s.serialize_field("range", &self.range)?;
         s.serialize_field("zero", &self.zero)?;
         s.serialize_field("domain", &self.domain)?;
+
+
 
         s.end()
 
