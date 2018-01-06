@@ -101,6 +101,19 @@ impl AreaChartMark {
         }
     }
 }
+
+impl Serialize for AreaChartMark {
+    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+    where
+        S: Serializer,
+    {
+        let mut s = serializer.serialize_struct("mark", 3)?;
+        s.serialize_field("type", &self.mark_type)?;
+        s.serialize_field("from", &self.from)?;
+        s.serialize_field("encode", &self.encode)?;
+        s.end()
+    }
+}
 #[derive(Serialize)]
 pub struct AreaChartEncoding {
     enter: AreaChartEnter,

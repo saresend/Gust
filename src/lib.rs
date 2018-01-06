@@ -126,7 +126,7 @@ mod tests {
     }
     #[test]
     fn test_area_chart() {
-        let area_chart = AreaChart::new();
+        let mut area_chart = AreaChart::new();
 
 
         for i in 0..20 {

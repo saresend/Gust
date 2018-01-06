@@ -11,7 +11,7 @@ use backend::traits::Graphable;
 /// AreaChart is the primary struct which describes a Area Chart, as by the vega specification
 /// # Example
 ///
-/// ```
+///```rust
 ///     use gust::backend::area_chart::AreaChart;
 ///
 ///     let mut a = AreaChart::new();
