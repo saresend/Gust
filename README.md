@@ -15,7 +15,7 @@ This is still very much a work in progress! APIs are very unstable and subject t
 
 ## What is Gust ##
 
-Gust is small a charting crate to make it really easy to build simple interactive data visualizations in rust. It also serves as a partial [Vega](http://vega.github.io/) implementation that will (hopefully) become more complete over time.
+Gust is a small charting crate to make it really easy to build simple interactive data visualizations in rust. It also serves as a partial [Vega](http://vega.github.io/) implementation that will (hopefully) become more complete over time.
 
 ---
 
