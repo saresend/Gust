@@ -45,24 +45,9 @@ impl BarChart {
         self.data[0].add_data(category, amount);
     }
 
-    /// Sets the description that is used to title the chart when rendering
-    pub fn set_description(&mut self, description: &str) {
-        self.description = String::from(description);
-    }
 
-    ///Sets the identifier for the graph. This is the value used when
-    /// actually naming the file, so you can expect files rendered to fit
-    /// the following format: <identifier>.<extension>
-    pub fn set_identifier(&mut self, id: &str) {
-        self.identifier = String::from(id);
-    }
 
-    ///This sets the size of the overal graph to be rendered
-    /// The tuple it takes represents the (height, width)
-    pub fn set_dimension(&mut self, t: (i32, i32)) {
-        self.height = t.0;
-        self.width = t.1;
-    }
+
 
     /// Sets the number of padding pixels around the chart
     pub fn set_padding(&mut self, pad: i32) {
@@ -73,11 +58,6 @@ impl BarChart {
     /// that currently exist in the given graph
     pub fn clear_data(&mut self) {
         self.data[0].clear()
-    }
-
-    /// set_color sets the default color of the bars in the bar chart
-    pub fn set_color(&mut self, color: &str) {
-        self.marks[0].set_color(color);
     }
 }
 
@@ -108,5 +88,30 @@ impl Graphable for BarChart {
     }
     fn get_identifier(&self) -> &str {
         &self.identifier
+    }
+    /// set_color sets the default color of the bars in the bar chart
+    fn set_color(&mut self, color: &str) {
+        self.marks[0].set_color(color);
+    }
+    ///This sets the size of the overal graph to be rendered
+    /// The tuple it takes represents the (height, width)
+    fn set_dimensions(&mut self, t: (i32, i32)) {
+        self.height = t.0;
+        self.width = t.1;
+    }
+    /// Sets the description that is used to title the chart when rendering
+    fn set_description(&mut self, description: &str) {
+        self.description = String::from(description);
+    }
+
+    ///Sets the identifier for the graph. This is the value used when
+    /// actually naming the file, so you can expect files rendered to fit
+    /// the following format: <identifier>.<extension>
+    fn set_identifier(&mut self, id: &str) {
+        self.identifier = String::from(id);
+    }
+    fn get_dimensions(&self) -> (i32, i32) {
+        (self.height, self.width)
+
     }
 }

@@ -13,7 +13,13 @@ pub trait Graphable: Sized + Serialize {
 
     // Define the API for what we can adjust through a Graph
     // set_color will certainly be part of the API, likely accepting a &str
-    fn set_color(&str);
+    fn set_color(&mut self, &str);
     // set_dimensions
-    fn set_dimensions((u32, u32));
+    fn set_dimensions(&mut self, (i32, i32));
+
+    fn get_dimensions(&self) -> (i32, i32);
+
+    fn set_description(&mut self, &str);
+
+    fn set_identifier(&mut self, &str);
 }
