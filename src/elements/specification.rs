@@ -7,7 +7,7 @@ pub struct Specification {
     description: String,
     width: i32,
     height: i32,
-    padding: i32,
+    padding: Padding,
     autosize: Autosize, // Change to enum (probably)
     signals: Vec<Signal>,
     data: Vec<Data>,
