@@ -1,11 +1,11 @@
-/*! Gust is a library that makes it easy to build simple data visualizations with Rust. 
+/*! Gust is a library that makes it easy to build simple data visualizations with Rust.
  It's built focused on easy of use and simplicity, and uses d3 and Vega to create an interactive
 chart
 
-# Usage 
+# Usage
 
 Gust is on crates.io and can be added by adding 'gust' to your dependencies in your `Cargo.toml`.
- 
+
 ```toml
 [dependencies]
 regex = "0.2"
@@ -13,22 +13,22 @@ regex = "0.2"
 
  and then add this to your crate root:
 
-```rust 
+```rust
  extern crate gust;
 ```
- 
-# Example: create a bar chart 
- 
- Use of gust involves defining a Graphable object like a bar graph, and adding 
+
+# Example: create a bar chart
+
+ Use of gust involves defining a Graphable object like a bar graph, and adding
  whatever data you would like to visualize, and then simply calling render on it.
- Gust will build your graph and add it to the `gust_build` folder, under whatever file format you 
+ Gust will build your graph and add it to the `gust_build` folder, under whatever file format you
  have specified.
- 
-```rust 
+
+```rust
     use gust::backend::bar_chart::BarChart;
     use gust::frontend::write::render_graph;
     use gust::backend::general::FileType;
- 
+
     let mut b = BarChart::new();
         let v = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"];
         for i in 0..10 {
@@ -36,18 +36,18 @@ regex = "0.2"
         }
        render_graph(&b, FileType::HTML).unwrap();
 ```
- 
- More ergonomic configuration options are in the process of being implemented, but not quite done. For the 
- time being, most member variables have been left public, and may be modified. 
- 
- 
-# Notes about building 
- 
- Gust will by default write all of the output html files into the top level gust_build directory 
- that is then stratified by the type of output file specified. 
- 
- For Example: 
- 
+
+ More ergonomic configuration options are in the process of being implemented, but not quite done. For the
+ time being, most member variables have been left public, and may be modified.
+
+
+# Notes about building
+
+ Gust will by default write all of the output html files into the top level gust_build directory
+ that is then stratified by the type of output file specified.
+
+ For Example:
+
 ```rust
 use gust::backend::bar_chart::BarChart;
 use gust::frontend::write::render_graph;
@@ -65,8 +65,7 @@ let mut b = BarChart::new();
  If you want to update the name, just change the identifier (`b.identifier`)
 */
 
-pub mod backend;
-pub mod frontend;
+pub mod elements;
 
 extern crate liquid;
 extern crate serde;
@@ -74,17 +73,16 @@ extern crate serde_json;
 #[macro_use]
 extern crate serde_derive;
 
-
-
 #[cfg(test)]
 mod tests {
 
-    use super::backend::bar_chart::BarChart;
-    use super::backend::stacked_bar_chart::StackedBarChart;
-    use super::backend::line_chart::LineChart;
     use super::backend::area_chart::AreaChart;
-    use super::frontend::write::render_graph;
+    use super::backend::bar_chart::BarChart;
     use super::backend::general::FileType;
+    use super::backend::line_chart::LineChart;
+    use super::backend::stacked_bar_chart::StackedBarChart;
+    use super::backend::traits::Graphable;
+    use super::frontend::write::render_graph;
     #[test]
     fn test_bar_chart() {
         let mut b = BarChart::new();
@@ -128,13 +126,11 @@ mod tests {
     fn test_area_chart() {
         let mut area_chart = AreaChart::new();
 
-
         for i in 0..20 {
             area_chart.add_data(i, 2 * i);
         }
 
         render_graph(&area_chart, FileType::HTML).unwrap();
-
     }
 
 }
