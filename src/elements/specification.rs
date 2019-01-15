@@ -1,4 +1,6 @@
 use super::autosize::Autosize;
+use super::padding::Padding;
+use super::signal::Signal;
 
 #[derive(Serialize, Deserialize)]
 pub struct Specification {

@@ -5,6 +5,7 @@ pub mod data;
 pub mod encoding;
 pub mod legend;
 pub mod mark;
+pub mod padding;
 pub mod projection;
 pub mod signal;
 pub mod specification;
