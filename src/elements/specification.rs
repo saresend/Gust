@@ -7,10 +7,12 @@ pub struct Specification {
     #[serde(rename = "$schema")]
     schema: String,
     description: String,
+    background: String,
     width: i32,
     height: i32,
     padding: Padding,
     autosize: Autosize, // Change to enum (probably)
+    config: Config,
     signals: Vec<Signal>,
     data: Vec<Data>,
     scales: Vec<Scale>,
