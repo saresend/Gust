@@ -1,10 +1,4 @@
 use super::super::event_properties::EventProperties;
+use crate::test_serialize_fmt;
 
-#[test]
-fn test_list_allow_all_serialize() {
-    let all_allow = EventProperties::AllowBool(true);
-    assert_eq!(
-        serde_json::to_string(&all_allow).unwrap(),
-        r#"{"allow":true}"#
-    );
-}
+test_serialize_fmt!(&EventProperties::AllowBool(true), r#"{"allow":true}"#);

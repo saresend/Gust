@@ -64,7 +64,7 @@ let mut b = BarChart::new();
  The resulting file will be saved as gust_build/html/barchart.html
  If you want to update the name, just change the identifier (`b.identifier`)
 */
-
+#[macro_use]
 pub mod elements;
 
 extern crate liquid;

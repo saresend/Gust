@@ -14,3 +14,5 @@ pub mod scale;
 pub mod signal;
 pub mod specification;
 pub mod title;
+#[macro_use]
+pub mod utils;
