@@ -1,9 +1,16 @@
 #[macro_export]
 macro_rules! test_serialize_fmt {
-    ($x:expr, $y:expr) => {
+    ($name: ident, $x:expr, $y:expr) => {
         #[test]
-        fn test() {
-            assert_eq!(serde_json::to_string($x).unwrap(), $y);
+        fn $name() {
+            assert_eq!(serde_json::to_string($x).unwrap(), $y.replace(" ", ""));
         }
+    };
+}
+
+#[macro_export]
+macro_rules! own {
+    ($x: expr) => {
+        $x.to_string()
     };
 }
