@@ -1,4 +1,5 @@
 use super::binding::Binding;
+use super::expression::Expression;
 use serde::ser::{Serialize, SerializeStruct, Serializer};
 
 #[derive(Serialize, Deserialize)]
@@ -10,14 +11,14 @@ pub enum JSAny {
     Null,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize)]
 pub enum VegaEvaluation {
     #[serde(rename = "init")]
     Init(Expression),
     #[serde(rename = "on")]
     On(Expression),
 }
-#[derive(Deserialize)]
+
 pub struct Signal {
     name: String,
     bind: Binding,

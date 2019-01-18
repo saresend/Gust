@@ -8,8 +8,12 @@ pub struct Binding {
 
 #[derive(Serialize, Deserialize)]
 pub enum Element {
-    checkbox,
-    radio,
-    range,
-    select,
+    #[serde(rename = "checkbox")]
+    Checkbox,
+    #[serde(rename = "radio")]
+    Radio,
+    #[serde(rename = "range")]
+    Range,
+    #[serde(rename = "select")]
+    Select,
 }

@@ -1,2 +1,2 @@
 #[derive(Serialize)]
-pub struct Axis {}
+pub struct Scale {}
