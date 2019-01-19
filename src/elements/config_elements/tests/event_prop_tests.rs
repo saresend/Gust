@@ -13,3 +13,15 @@ test_serialize_fmt!(
     &EventProperties::AllowList(vec![own!("One"), own!("Two"), own!("Three")]),
     r#"{"allow":["One", "Two", "Three"]}"#
 );
+
+test_serialize_fmt!(
+    prevent_all,
+    &EventProperties::PreventBool(true),
+    r#"{"prevent":true}"#
+);
+
+test_serialize_fmt!(
+    prevent_list,
+    &EventProperties::PreventList(vec![]),
+    r#"{"prevent": []}"#
+);
