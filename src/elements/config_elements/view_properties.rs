@@ -27,7 +27,10 @@ impl Serialize for GroupOptions {
 
 #[derive(Serialize)]
 pub struct ViewProperties {
-    autosize: Autosize,
-    background: String,
-    group: GroupOptions,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub autosize: Option<Autosize>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub background: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub group: Option<GroupOptions>,
 }
