@@ -1,10 +1,9 @@
 use super::vega_scheme::VegaColorScheme;
 
 #[derive(Serialize)]
+#[serde(rename_all = "lowercase")]
 pub enum CyclicScheme {
-    #[serde(rename = "rainbow")]
     Rainbow,
-    #[serde(rename = "sinebow")]
     Sinebow,
 }
 

@@ -7,18 +7,13 @@ pub struct SingleHue {
 }
 
 #[derive(Serialize)]
+#[serde(rename_all = "lowercase")]
 pub enum SingleHueBase {
-    #[serde(rename = "blues")]
     Blues,
-    #[serde(rename = "greens")]
     Greens,
-    #[serde(rename = "greys")]
     Greys,
-    #[serde(rename = "purples")]
     Purples,
-    #[serde(rename = "reds")]
     Reds,
-    #[serde(rename = "oranges")]
     Oranges,
 }
 
