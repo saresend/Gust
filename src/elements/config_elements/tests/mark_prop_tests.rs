@@ -1,5 +1,4 @@
 use super::super::mark_properties::{MarkConfig, MarkProperties};
-use crate::own;
 use crate::test_serialize_fmt;
 
 test_serialize_fmt!(

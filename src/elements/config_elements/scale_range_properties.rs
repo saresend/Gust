@@ -1,6 +1,5 @@
 use super::color_scheme::vega_scheme::VegaColorScheme;
 use serde::Serialize;
-use std::boxed::Box;
 
 #[derive(Serialize)]
 pub struct ScaleRangeProperties<T, U, V, W, X>
