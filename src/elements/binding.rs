@@ -7,13 +7,10 @@ pub struct Binding {
 }
 
 #[derive(Serialize, Deserialize)]
+#[serde(rename_all = "lowercase")]
 pub enum Element {
-    #[serde(rename = "checkbox")]
     Checkbox,
-    #[serde(rename = "radio")]
     Radio,
-    #[serde(rename = "range")]
     Range,
-    #[serde(rename = "select")]
     Select,
 }

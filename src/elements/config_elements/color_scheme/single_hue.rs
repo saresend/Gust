@@ -1,20 +1,10 @@
+use super::colors::Colors;
 use super::vega_scheme::VegaColorScheme;
 use serde::{Serialize, Serializer};
 
 pub struct SingleHue {
     number: i32,
-    name: SingleHueBase,
-}
-
-#[derive(Serialize)]
-#[serde(rename_all = "lowercase")]
-pub enum SingleHueBase {
-    Blues,
-    Greens,
-    Greys,
-    Purples,
-    Reds,
-    Oranges,
+    base: Colors,
 }
 
 impl Serialize for SingleHue {
@@ -22,8 +12,8 @@ impl Serialize for SingleHue {
     where
         S: Serializer,
     {
-        let base = serde_json::to_string(&self.name).unwrap();
-        base = base + "-" + &self.number.to_string();
+        let base = serde_json::to_string(&self.base).unwrap();
+        let base = base + "s-" + &self.number.to_string();
         serializer.serialize_str(&base)
     }
 }
