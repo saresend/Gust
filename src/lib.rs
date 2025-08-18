@@ -8,10 +8,10 @@ Gust is on crates.io and can be added by adding 'gust' to your dependencies in y
  
 ```toml
 [dependencies]
-regex = "0.2"
+gust = "0.1.4"
 ```
 
- and then add this to your crate root:
+ and (if using edition 2015) then add this to your crate root:
 
 ```rust 
  extern crate gust;
